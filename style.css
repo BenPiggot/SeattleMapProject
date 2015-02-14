@@ -1,0 +1,180 @@
+
+* {
+     -moz-box-sizing: border-box; /* Firexfox */
+     -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+     box-sizing: border-box; /* IE */
+     margin: 0px;
+     padding: 0px;
+}
+
+
+/*body {
+	background-image: url("https://img1.etsystatic.com/001/0/6228198/il_340x270.403889905_c77d.jpg");
+	background-position: center; 
+    background-size: cover;
+}*/
+
+html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+#container {
+    min-height: 100%; 
+}
+
+header {
+    height: 25%;
+    background-color: #bbb;
+    border-bottom: 2px solid white;
+}
+
+h1 {
+    font-size: 3.5em;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+    text-align: center;
+    padding-top: .2em;
+    margin-bottom: 0px;
+}
+
+#subhead {
+    font-size: 1.4em;
+    font-family: 'Droid Serif', serif;
+    color: #fff;
+    text-align: center;
+    margin-top: 0px;
+}
+
+#googleMap {
+    min-height: 62.5%;
+}
+
+#wrapper { 
+    position: relative; 
+}
+
+.return { 
+   position: absolute; 
+   bottom: 0.5em; 
+   right: 0.5em;
+   z-index: 49;
+   height: 1.5em;
+   width: 7em;
+   border-radius: 3px;
+   background-color: rgba(0, 0, 0, 0.5);
+   font-family: 'Oswald', sans-serif;
+   font-size: 2em;
+   text-align: center;
+   color: #fff;
+   cursor: pointer;
+}
+
+footer {
+    font-family: 'Oswald', sans-serif;
+    background-color: #bbb;
+    min-height: 12.5%;
+    width: 100%;
+    border-top: 2px solid white;
+}
+
+nav {
+     padding: 0.625em;
+     text-align: center;
+}
+
+nav a {
+     color: #fff;
+     padding-right: 3px;
+     padding-left: 3px;
+     text-decoration: none;
+     font-size: 20px;
+     cursor: pointer;
+}
+
+nav a:hover {
+    color: #000;
+}
+
+nav ul {
+     padding: 0px;
+     font-size: 0px;
+}
+
+nav li {
+     display: inline-block;
+     text-align: center;
+     font-size: 1em;
+     padding: 10px;
+     width: 160px
+}
+
+
+#pop-up {
+    font-family: 'Droid Serif', serif;
+    color: #777;
+    border-radius: 3px;
+}
+
+#pop-up h2 {
+    font-family: 'Oswald', sans-serif;
+}
+
+#pop-up a {
+    text-decoration: underline;
+    color: #666;
+}
+
+#big-img {
+    width: 100%;
+    height: auto;
+}
+
+#bodyContent {
+    padding-bottom: 1.1em;
+}
+
+@media screen and (max-width: 500px) {
+        #mobile-wrapper {
+            padding-top: 1em;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            padding-top: 0em;
+        }
+
+        #subhead {
+            font-size: 1.4em;
+        }
+
+        header {
+            height: 25%;
+        }
+
+        #googleMap {
+            position: relative;
+            min-height: 45%;
+        }
+
+        .return { 
+           right: 2.2em;
+           bottom: 1em;
+        }
+
+        footer {
+            position: relative;
+            min-height: 30%;
+            padding-top: 0.3em;
+        }
+
+        nav a {
+            font-size: 20px;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+        }
+
+}
