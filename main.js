@@ -7,7 +7,7 @@ var sick = new google.maps.LatLng(47.5787321,-122.299051);
 var locations = [hoover, regrade, yesler, sick];
 
 
-// declare grayScale style array
+// declare google map style arrays
 
 var blueEssence = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
 
@@ -24,6 +24,8 @@ var mostlyGray = [{"featureType":"administrative","elementType":"all","stylers":
 var grayScale = [{"featureType":"all","elementType":"all","stylers":[{"saturation":-100},{"gamma":0.5}]}]
 
 var mint = [{"stylers":[{"hue":"#16a085"},{"saturation":0}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]}]
+
+
 //define cateogry variables, which will be used as event handlers
 
 var culture = document.getElementById("culture");
