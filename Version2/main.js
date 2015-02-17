@@ -119,8 +119,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
 culture.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
-    document.getElementById('toHide').style.height = "0%";
-    document.getElementById('googleMap').style.height = "100%";
+    // document.getElementById('toHide').style.height = "0%";
+    // document.getElementById('googleMap').style.height = "100%";
 
 	var mapProp = {
     center: new google.maps.LatLng(47.605, -122.320850),
@@ -225,8 +225,12 @@ culture.addEventListener('click', function() {
         sickInfo.open(map, sickMarker);
   });
 
+  $("h1").text("");
+  $("p subhead").text("");
+  $("div").removeClass("innerHeader");
+  $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
-  // $("#title").addClass('title-category').text("CULTURE");
+ 
  },false);
 
 
@@ -236,8 +240,8 @@ culture.addEventListener('click', function() {
 civilRights.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
-    document.getElementById('toHide').style.height = "0%";
-    document.getElementById('googleMap').style.height = "100%";
+    // document.getElementById('toHide').style.height = "0%";
+    // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.63, -122.320850),
     zoom: 12,
@@ -340,7 +344,12 @@ civilRights.addEventListener('click', function() {
         higoInfo.open(map, higoMarker);
   });
 
+  $("h1").text("");
+  $("p subhead").text("");
+  $("div").removeClass("innerHeader");
+  $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
+
  },false);
 
 
@@ -350,8 +359,8 @@ civilRights.addEventListener('click', function() {
 commerce.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
-    document.getElementById('toHide').style.height = "0%";
-    document.getElementById('googleMap').style.height = "100%";
+    // document.getElementById('toHide').style.height = "0%";
+    // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.605, -122.320850),
     zoom: 12,
@@ -453,8 +462,13 @@ commerce.addEventListener('click', function() {
     google.maps.event.addListener(sickMarker, 'click', function() {
         sickInfo.open(map, sickMarker);
   });
-
+    
+  $("h1").text("");
+  $("p subhead").text("");
+  $("div").removeClass("innerHeader");
+  $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
+
  },false);
 
 
@@ -465,8 +479,8 @@ commerce.addEventListener('click', function() {
 environment.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
-    document.getElementById('toHide').style.height = "0%";
-    document.getElementById('googleMap').style.height = "100%";
+    // document.getElementById('toHide').style.height = "0%";
+    // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.605, -122.320850),
     zoom: 12,
@@ -569,7 +583,12 @@ environment.addEventListener('click', function() {
         sickInfo.open(map, sickMarker);
   });
 
+  $("h1").text("");
+  $("p subhead").text("");
+  $("div").removeClass("innerHeader");
+  $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
+
  },false);
 
 
@@ -580,8 +599,8 @@ environment.addEventListener('click', function() {
 politics.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
-    document.getElementById('toHide').style.height = "0%";
-    document.getElementById('googleMap').style.height = "100%";
+    // document.getElementById('toHide').style.height = "0%";
+    // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.605, -122.320850),
     zoom: 12,
@@ -684,7 +703,12 @@ politics.addEventListener('click', function() {
         sickInfo.open(map, sickMarker);
   });
 
+  $("h1").text("");
+  $("p subhead").text("");
+  $("div").removeClass("innerHeader");
+  $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
+
  },false);
 
 
@@ -695,8 +719,8 @@ politics.addEventListener('click', function() {
 technology.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
-    document.getElementById('toHide').style.height = "0%";
-    document.getElementById('googleMap').style.height = "100%";
+    // document.getElementById('toHide').style.height = "0%";
+    // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.605, -122.320850),
     zoom: 12,
@@ -799,7 +823,12 @@ technology.addEventListener('click', function() {
         sickInfo.open(map, sickMarker);
   });
 
+  $("h1").text("");
+  $("p subhead").text("");
+  $("div").removeClass("innerHeader");
+  $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
+
  },false);
 
 
@@ -810,8 +839,7 @@ technology.addEventListener('click', function() {
 
 var overmap = document.getElementById("over_map");
 overmap.addEventListener('click', function(){
-    document.getElementById('toHide').style.height = "20.5%";
-    document.getElementById('googleMap').style.height = "67%";
+;
     var mapProp = {
     center: new google.maps.LatLng(47.615, -122.320850),
     zoom: 11,
@@ -861,7 +889,10 @@ overmap.addEventListener('click', function(){
     map: map,
     icon: 'greypin.png'
     });
-
+  $("#target").addClass("innerHeader");
+  $("h1").text("Seattle Backstory");
+  $("p").add('subhead').text("All the History that is fit to Map");
+  $("footer").show('nav');
   $("#over_map").removeClass('return').text("");
  },false);
 
