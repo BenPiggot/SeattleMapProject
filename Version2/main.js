@@ -878,13 +878,13 @@ overmap.addEventListener('click', function(){
     icon: 'greypin.png'
     });
 
-    var chickenMarker = new google.maps.Marker({
+  var chickenMarker = new google.maps.Marker({
     position: higo,
     map: map,
     icon: 'greypin.png'
     });
 
-    var microsoftMarker = new google.maps.Marker({
+  var microsoftMarker = new google.maps.Marker({
     position: microsoft,
     map: map,
     icon: 'greypin.png'

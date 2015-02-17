@@ -89,8 +89,8 @@ h1 {
 
 .title-category { 
    position: absolute; 
-   top: 0.5em; 
-   left: 65%;
+   top: 0.2em; 
+   margin-left: 35%;
    z-index: 49;
    height: 1.5em;
    width: 30%;
@@ -120,7 +120,7 @@ nav a {
      padding-right: 3px;
      padding-left: 3px;
      text-decoration: none;
-     font-size: 22px;
+     font-size: 25px;
      cursor: pointer;
 }
 
@@ -166,13 +166,13 @@ nav li {
     padding-bottom: 1.1em;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
         #mobile-wrapper {
             padding-top: 0.5em;
         }
 
         .innerHeader h1 {
-            font-size: 3em;
+            font-size: 3.3em;
             padding-top: 0em;
         }
 
@@ -187,12 +187,11 @@ nav li {
 
         .return { 
            vertical-align: middle;
-           bottom: 0.5em;
+           bottom: 1.5em;
         }
 
-
         nav a {
-            font-size: 22px;
+            font-size: 23px;
         }
 
         img {
