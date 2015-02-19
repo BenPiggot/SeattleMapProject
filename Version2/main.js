@@ -7,6 +7,8 @@ var sick = new google.maps.LatLng(47.5787321,-122.299051);
 var chicken = new google.maps.LatLng(47.691218,-122.3068837);
 var higo = new google.maps.LatLng(47.599365,-122.326155);
 var microsoft = new google.maps.LatLng(47.617689,-122.195762);
+var duwamish = new google.maps.LatLng(47.5347757,-122.3216731);
+var boeing = new google.maps.LatLng(47.530625,-122.311985);
 var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft];
 
 
@@ -94,6 +96,18 @@ function initialize() {
     icon: 'greypin.png'
     });
 
+    var duwamishMarker = new google.maps.Marker({
+    position: duwamish,
+    map: map,
+    icon: 'greypin.png'
+    })
+
+    var boeingMarker = new google.maps.Marker({
+    position: boeing,
+    map: map,
+    icon: 'greypin.png'
+    })
+
     //  adviseString = '<div id="pop-up">'+
     // '<h2>Please click on a category below to find out more !</h2>'+ 
     // '<div>'
@@ -160,7 +174,7 @@ culture.addEventListener('click', function() {
       '<h2>Hooverville</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'During the 1930s, one of the largest examples of the Depression-era squatter camps or "Hoovervilles" existed on a site adjacent to what today is Century Link field. The settlement grew up in late 1929 in the aftermath of that year\'s stock-market induced economic crisis. Most of its residents were single men, unemployed lumberjacks, fishermen, farmworkers miners, and seamen. Its residents survived by fishing, salvaging junk and driftwood, and performing odd jobs. While the 1930s squatter settlement pictured below was unprecedented in its size, similar makeshift itinerant worker settlements had existed in the in the Elliot Bay tideflats and Duwamish river banks for much of Seattle\'s history. The Seattle Housing Authority\'s forcible destruction of Hooverville\'s in 1942 ostensibly to accomodate wartime mobilization priorities was indicative of a broader decline of such settlements. However, marginal settlement patterns continued to exist on a diminished scale after World War II, finding expression in houseboat communities on Lake Union and along the Duwamish River. However, rising land values and changing land use patterns mean that even these settlements are largely gone.</p>'+
       '</div>'+
       '<img id="big-img" src=http://www.portseattle100.org/images/properties/t46/Hooverville_2.jpg>'+
       '</div>';
@@ -195,7 +209,7 @@ culture.addEventListener('click', function() {
       '<h2>Yesler\'s Mill</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'In 1853, Henry Yesler founded a sawmill to process nearby the evergreen forests that covered the hills surrounding Elliot Bay. Yesler\'s endeaovr was critical to Seattle\'s development, as it\'s ability to produce timber on an industrial distinguished the new Euro-American settlement from competing logging camps and farming communtiies established throughout Western Washington at the time. Most of timber was exported to California, linking Seattle to a broader national economy from its inception. Because of large number of young male workers it attracted, the sawmill also served as the locus for Seattle\'s first vice district. This district became known as "Skid Row" for the way logs were skidded down the hillside nearby to the sawmill on the waterfront, which over time became a generic name given to similar vice district throughout the world, Yesler\'s enterprise was also notable in that it made full use of the surrounding Native communities in its operation. Yesler himself married a Duwamish woman and fought against the removal of Natives to reservations. In the picture below, a group of Yesler\'s Native employees pose for a picture in front of the mill\'s cookhouse. </p>' +
       '</div>'+
       '<img src=http://ww3.hdnux.com/photos/02/72/54/764726/3/628x471.jpg>'+
       '</div>';
@@ -280,7 +294,7 @@ civilRights.addEventListener('click', function() {
       '<h2>Hooverville</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'During the 1930s, one of the largest examples of the Depression-era squatter camps or "Hoovervilles" existed on a site adjacent to what today is Century Link field. The settlement grew up in late 1929 in the aftermath of that year\'s stock-market induced economic crisis. Most of its residents were single men, unemployed lumberjacks, fishermen, farmworkers miners, and seamen. Its residents survived by fishing, salvaging junk and driftwood, and performing odd jobs. While the 1930s squatter settlement pictured below was unprecedented in its size, similar makeshift itinerant worker settlements had existed in the in the Elliot Bay tideflats and Duwamish river banks for much of Seattle\'s history. The Seattle Housing Authority\'s forcible destruction of Hooverville\'s in 1942 ostensibly to accomodate wartime mobilization priorities was indicative of a broader decline of such settlements. However, marginal settlement patterns continued to exist on a diminished scale after World War II, finding expression in houseboat communities on Lake Union and along the Duwamish River. However, rising land values and changing land use patterns mean that even these settlements are largely gone.</p>'+
       '</div>'+
       '<img id="big-img" src=http://www.portseattle100.org/images/properties/t46/Hooverville_2.jpg>'+
       '</div>';
@@ -294,10 +308,10 @@ civilRights.addEventListener('click', function() {
   });
 
     contentString[1] = '<div id="pop-up">'+
-      '<h2>Coon\'s Chicken</h2>'+ 
+      '<h2>Coon Chicken Inn</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'Coon Chicken Inn was opened by restraunteur Maxon Lester Graham in 1930 at the intersection of Lake City Way and 85th Avenue NE. The restaurant used racist imagery as a means of evoking "southern authenticity", a cultural trope largely tolerated by white American at the time . However, the restaurant also served as a lightning rod for Seattle\'s growing African American community. Bolstered rthe community\'s rapid expansion  during World War II, the Seattle NAACP and the Northwest Enterpirse (Seattle\'s African American  newspaper) maintained a sustained campaign agains Coon Chicken Inn\'s racist imagery. Graham ultimately removed the "coon" imagery in 1949, rebranding his restaurant as G.I. Joe\'s Country Chicken Store. Nevertheless, Coon Chicken Inn\'s twenty year existence demonstrate just how embeeded white supremacy was in the United State during the middle of the 20th century. The restaurant is pictured below; patrons would enter thorugh the mounth of the "coon head."</p>'+
+      'Coon Chicken Inn was opened by restraunteur Maxon Lester Graham in 1930 at the intersection of Lake City Way and 85th Avenue NE. The restaurant used racist imagery as a means of evoking "southern authenticity", a cultural trope largely tolerated by white American at the time3. However, the restaurant also served as a lightning rod for Seattle\'s growing African American community. Bolstered rthe community\'s rapid expansion  during World War II, the Seattle NAACP and the Northwest Enterpirse (Seattle\'s African American  newspaper) maintained a sustained campaign agains Coon Chicken Inn\'s racist imagery. Graham ultimately removed the "coon" imagery in 1949, rebranding his restaurant as G.I. Joe\'s Country Chicken Store. Nevertheless, Coon Chicken Inn\'s twenty year existence demonstrate just how embeeded white supremacy was in the United State during the middle of the 20th century. The restaurant is pictured below; patrons would enter thorugh the mounth of the "coon head" on the left.</p>'+
       '</div>'+
       '<img src=http://depts.washington.edu/civilr/images/Coon%20Chicken%20images/entranceandvehicle_large.jpg>'+
       '</div>';
@@ -314,7 +328,7 @@ civilRights.addEventListener('click', function() {
       '<h2>Yesler\'s Mill</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'In 1853, Henry Yesler founded a sawmill to process nearby the evergreen forests that covered the hills surrounding Elliot Bay. Yesler\'s endeaovr was critical to Seattle\'s development, as it\'s ability to produce timber on an industrial distinguished the new Euro-American settlement from competing logging camps and farming communtiies established throughout Western Washington at the time. Most of timber was exported to California, linking Seattle to a broader national economy from its inception. Because of large number of young male workers it attracted, the sawmill also served as the locus for Seattle\'s first vice district. This district became known as "Skid Row" for the way logs were skidded down the hillside nearby to the sawmill on the waterfront, which over time became a generic name given to similar vice district throughout the world, Yesler\'s enterprise was also notable in that it made full use of the surrounding Native communities in its operation. Yesler himself married a Duwamish woman and fought against the removal of Natives to reservations. In the picture below, a group of Yesler\'s Native employees pose for a picture in front of the mill\'s cookhouse. </p>' +
       '</div>'+
       '<img src=http://ww3.hdnux.com/photos/02/72/54/764726/3/628x471.jpg>'+
       '</div>';
@@ -362,7 +376,7 @@ commerce.addEventListener('click', function() {
     // document.getElementById('toHide').style.height = "0%";
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
-    center: new google.maps.LatLng(47.605, -122.320850),
+    center: new google.maps.LatLng(47.590, -122.320850),
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: mostlyGray
@@ -387,11 +401,11 @@ commerce.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-  var sickMarker = new google.maps.Marker({
-    position: sick,
+  var boeingMarker = new google.maps.Marker({
+    position: boeing,
     map: map,
     icon: 'greypin.png'
-    });
+    })
 
   var contentString = [];
 
@@ -399,7 +413,7 @@ commerce.addEventListener('click', function() {
       '<h2>Hooverville</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'During the 1930s, one of the largest examples of the Depression-era squatter camps or "Hoovervilles" existed on a site adjacent to what today is Century Link field. The settlement grew up in late 1929 in the aftermath of that year\'s stock-market induced economic crisis. Most of its residents were single men, unemployed lumberjacks, fishermen, farmworkers miners, and seamen. Its residents survived by fishing, salvaging junk and driftwood, and performing odd jobs. While the 1930s squatter settlement pictured below was unprecedented in its size, similar makeshift itinerant worker settlements had existed in the in the Elliot Bay tideflats and Duwamish river banks for much of Seattle\'s history. The Seattle Housing Authority\'s forcible destruction of Hooverville\'s in 1942 ostensibly to accomodate wartime mobilization priorities was indicative of a broader decline of such settlements. However, marginal settlement patterns continued to exist on a diminished scale after World War II, finding expression in houseboat communities on Lake Union and along the Duwamish River. However, rising land values and changing land use patterns mean that even these settlements are largely gone.</p>'+
       '</div>'+
       '<img id="big-img" src=http://www.portseattle100.org/images/properties/t46/Hooverville_2.jpg>'+
       '</div>';
@@ -433,7 +447,7 @@ commerce.addEventListener('click', function() {
       '<h2>Yesler\'s Mill</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'In 1853, Henry Yesler founded a sawmill to process nearby the evergreen forests that covered the hills surrounding Elliot Bay. Yesler\'s endeaovr was critical to Seattle\'s development, as it\'s ability to produce timber on an industrial distinguished the new Euro-American settlement from competing logging camps and farming communtiies established throughout Western Washington at the time. Most of timber was exported to California, linking Seattle to a broader national economy from its inception. Because of large number of young male workers it attracted, the sawmill also served as the locus for Seattle\'s first vice district. This district became known as "Skid Row" for the way logs were skidded down the hillside nearby to the sawmill on the waterfront, which over time became a generic name given to similar vice district throughout the world, Yesler\'s enterprise was also notable in that it made full use of the surrounding Native communities in its operation. Yesler himself married a Duwamish woman and fought against the removal of Natives to reservations. In the picture below, a group of Yesler\'s Native employees pose for a picture in front of the mill\'s cookhouse.</p>'+
       '</div>'+
       '<img src=http://ww3.hdnux.com/photos/02/72/54/764726/3/628x471.jpg>'+
       '</div>';
@@ -447,20 +461,20 @@ commerce.addEventListener('click', function() {
   });
 
     contentString[3] = '<div id="pop-up">'+
-      '<h2>Sick\'s Stadium</h2>'+ 
+      '<h2>Boeing Plant 2</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
       'Located in the Mount Baker neighborhood at the corner McClellan Street and Rainier Avenue, Sick\'s Stadium first opened in 1938. The stadium was named after Emil Sick, who was the owner of the nearby Rainier Brewing Company as well as the minor league Seattle Rainiers. The Rainiers would play at the site until 1968. In 1969, Seattle\'s first Major League franchise, the Pilots, would locate at the stadium. The Pilots stay in Seattle would be remarkably brief, as they would relocate to Milwaukee as the Brewers prior to the 1970 season. In relative disrepair, the stadium would once again serve as the home for the minor league Rainiers from 1972 to 1976. Sick\'s Stadium was finally demolished in 1976. Today, the site serves as a location for a Lowe\'s home improvement store. Below is a photograph of the stadium as it looked just prior to its demolition in 1976:</p>' +
       '</div>'+
-      '<img src=http://www.insidesocal.com/tomhoffarth/files/import/i-83ee32cb413b1ec6bc17735d167e940e-sicks805.jpg>'+
+      '<img id="big-img" src=http://sharing.wavy.com/sharewlin//photo/2010/09/14/Boeing-Plant-2_Gree_20100914051040_640_480.JPG>'+
       '</div>';
 
-  var sickInfo = new google.maps.InfoWindow({
+  var boeingInfo = new google.maps.InfoWindow({
       content: contentString[3]
   });
 
-    google.maps.event.addListener(sickMarker, 'click', function() {
-        sickInfo.open(map, sickMarker);
+    google.maps.event.addListener(boeingMarker, 'click', function() {
+        boeingInfo.open(map, boeingMarker);
   });
     
   $("h1").text("");
@@ -482,7 +496,7 @@ environment.addEventListener('click', function() {
     // document.getElementById('toHide').style.height = "0%";
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
-    center: new google.maps.LatLng(47.605, -122.320850),
+    center: new google.maps.LatLng(47.590, -122.320850),
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: Nature
@@ -501,11 +515,11 @@ environment.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-  var yeslerMarker = new google.maps.Marker({
-    position: yesler,
+  var duwamishMarker = new google.maps.Marker({
+    position: duwamish,
     map: map,
     icon: 'greypin.png'
-    });
+    })
 
   var sickMarker = new google.maps.Marker({
     position: sick,
@@ -519,7 +533,7 @@ environment.addEventListener('click', function() {
       '<h2>Hooverville</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'During the 1930s, one of the largest examples of the Depression-era squatter camps or "Hoovervilles" existed on a site adjacent to what today is Century Link field. The settlement grew up in late 1929 in the aftermath of that year\'s stock-market induced economic crisis. Most of its residents were single men, unemployed lumberjacks, fishermen, farmworkers miners, and seamen. Its residents survived by fishing, salvaging junk and driftwood, and performing odd jobs. While the 1930s squatter settlement pictured below was unprecedented in its size, similar makeshift itinerant worker settlements had existed in the in the Elliot Bay tideflats and Duwamish river banks for much of Seattle\'s history. The Seattle Housing Authority\'s forcible destruction of Hooverville\'s in 1942 ostensibly to accomodate wartime mobilization priorities was indicative of a broader decline of such settlements. However, marginal settlement patterns continued to exist on a diminished scale after World War II, finding expression in houseboat communities on Lake Union and along the Duwamish River. However, rising land values and changing land use patterns mean that even these settlements are largely gone.</p>'+
       '</div>'+
       '<img id="big-img" src=http://www.portseattle100.org/images/properties/t46/Hooverville_2.jpg>'+
       '</div>';
@@ -550,20 +564,20 @@ environment.addEventListener('click', function() {
   });
 
     contentString[2] = '<div id="pop-up">'+
-      '<h2>Yesler\'s Mill</h2>'+ 
+      '<h2>Duwamish Superfund Site</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
       'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
       '</div>'+
-      '<img src=http://ww3.hdnux.com/photos/02/72/54/764726/3/628x471.jpg>'+
+      '<img id="big-img" src=http://duwamishcleanup.org/wp-content/uploads/2014/11/duwamish-river-air-pollution.jpg>'+
       '</div>';
 
-  var yeslerInfo = new google.maps.InfoWindow({
+  var duwamishInfo = new google.maps.InfoWindow({
       content: contentString[2]
   });
 
-    google.maps.event.addListener(yeslerMarker, 'click', function() {
-        yeslerInfo.open(map, yeslerMarker);
+    google.maps.event.addListener(duwamishMarker, 'click', function() {
+        duwamishInfo.open(map, duwamishMarker);
   });
 
     contentString[3] = '<div id="pop-up">'+
@@ -639,7 +653,7 @@ politics.addEventListener('click', function() {
       '<h2>Hooverville</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'During the 1930s, one of the largest examples of the Depression-era squatter camps or "Hoovervilles" existed on a site adjacent to what today is Century Link field. The settlement grew up in late 1929 in the aftermath of that year\'s stock-market induced economic crisis. Most of its residents were single men, unemployed lumberjacks, fishermen, farmworkers miners, and seamen. Its residents survived by fishing, salvaging junk and driftwood, and performing odd jobs. While the 1930s squatter settlement pictured below was unprecedented in its size, similar makeshift itinerant worker settlements had existed in the in the Elliot Bay tideflats and Duwamish river banks for much of Seattle\'s history. The Seattle Housing Authority\'s forcible destruction of Hooverville\'s in 1942 ostensibly to accomodate wartime mobilization priorities was indicative of a broader decline of such settlements. However, marginal settlement patterns continued to exist on a diminished scale after World War II, finding expression in houseboat communities on Lake Union and along the Duwamish River. However, rising land values and changing land use patterns mean that even these settlements are largely gone.</p>'+
       '</div>'+
       '<img id="big-img" src=http://www.portseattle100.org/images/properties/t46/Hooverville_2.jpg>'+
       '</div>';
@@ -672,8 +686,7 @@ politics.addEventListener('click', function() {
     contentString[2] = '<div id="pop-up">'+
       '<h2>Yesler\'s Mill</h2>'+ 
       '<div id="bodyContent">'+
-      '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'In 1853, Henry Yesler founded a sawmill to process nearby the evergreen forests that covered the hills surrounding Elliot Bay. Yesler\'s endeaovr was critical to Seattle\'s development, as it\'s ability to produce timber on an industrial distinguished the new Euro-American settlement from competing logging camps and farming communtiies established throughout Western Washington at the time. Most of timber was exported to California, linking Seattle to a broader national economy from its inception. Because of large number of young male workers it attracted, the sawmill also served as the locus for Seattle\'s first vice district. This district became known as "Skid Row" for the way logs were skidded down the hillside nearby to the sawmill on the waterfront, which over time became a generic name given to similar vice district throughout the world, Yesler\'s enterprise was also notable in that it made full use of the surrounding Native communities in its operation. Yesler himself married a Duwamish woman and fought against the removal of Natives to reservations. In the picture below, a group of Yesler\'s Native employees pose for a picture in front of the mill\'s cookhouse.</p>'+
       '</div>'+
       '<img src=http://ww3.hdnux.com/photos/02/72/54/764726/3/628x471.jpg>'+
       '</div>';
@@ -759,7 +772,7 @@ technology.addEventListener('click', function() {
       '<h2>Hooverville</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'During the 1930s, one of the largest examples of the Depression-era squatter camps or "Hoovervilles" existed on a site adjacent to what today is Century Link field. The settlement grew up in late 1929 in the aftermath of that year\'s stock-market induced economic crisis. Most of its residents were single men, unemployed lumberjacks, fishermen, farmworkers miners, and seamen. Its residents survived by fishing, salvaging junk and driftwood, and performing odd jobs. While the 1930s squatter settlement pictured below was unprecedented in its size, similar makeshift itinerant worker settlements had existed in the in the Elliot Bay tideflats and Duwamish river banks for much of Seattle\'s history. The Seattle Housing Authority\'s forcible destruction of Hooverville\'s in 1942 ostensibly to accomodate wartime mobilization priorities was indicative of a broader decline of such settlements. However, marginal settlement patterns continued to exist on a diminished scale after World War II, finding expression in houseboat communities on Lake Union and along the Duwamish River. However, rising land values and changing land use patterns mean that even these settlements are largely gone.</p>'+
       '</div>'+
       '<img id="big-img" src=http://www.portseattle100.org/images/properties/t46/Hooverville_2.jpg>'+
       '</div>';
@@ -776,7 +789,7 @@ technology.addEventListener('click', function() {
       '<h2>Microsoft</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'Today, Microsoft is one of the most recognized and important corporations in the world. With a market capitalization of just over $360 billion, it is arguably the most important reason why the Seattle area is one of the most important information technology centers in the world. The image below depicts Microsoft\'s full staff as it existed in 1979, after Bill Gates and Paul Allen had relocated the company from Albuquerque to Bellevue. At the time, the company was located in a non-descript one story office building adjacent to a Burger Master restaurant on Bellevue\'s 8th Avenue. Today--largely as a result of the information technology boom Microsoft inspired--the location is surrounded by office towers, high rise condos, and high-end retail chains. While Micrsoft has lost some of the creative impetus that drove is dizzingy rise during the 1980s and 1990s, it remains an important driver of the region\'s economy. </p>'+
+      'Today, Microsoft is one of the most recognized and important corporations in the world. With a market capitalization of just over $360 billion, it is also arguably the main reason why the Seattle area is one of the most important information technology centers in the world. The image below depicts Microsoft\'s full staff as it existed in 1979, after Bill Gates and Paul Allen had relocated the company from Albuquerque to Bellevue. At the time, the company was located in a non-descript one story office building adjacent to a Burger Master restaurant on Bellevue\'s 8th Avenue. Today--largely as a result of the information technology boom Microsoft inspired--the location is surrounded by office towers, high rise condos, and high-end retail chains. While Micrsoft has lost some of the creative impetus that drove is dizzing rise during the 1980s and 1990s, it remains an important driver of the region\'s economy. </p>'+
       '</div>'+
       '<img id="big-img" src=http://cdn.arstechnica.net/wp-content/uploads/2009/07/microsoft_1979.png>'+
       '</div>';
@@ -793,7 +806,7 @@ technology.addEventListener('click', function() {
       '<h2>Yesler\'s Mill</h2>'+ 
       '<div id="bodyContent">'+
       '<p>' +
-      'In recent years, a proliferation of books and articles has documented the rise of political conservatism in the United States. However, this scholarship either ignores or downplays the continued resilience of liberalism as well as its most important institutional vehicle, the Democratic Party. The current article represents an attempt to redress this imbalance. Its focus on Orange County, California (and more specifically, the city of Irvine) between the 1970s and the 1992 Presidential election might thus seem strange, given the region’s impeccably conservative reputation. However, as this article demonstrates, a much more complicated and multi-dimensional politics existed in the region, demonstrating just how deeply imbedded liberal policy preferences continued to be in suburban areas across the country. Ultimately, these liberal undercurrents provided the Democratic Party a foundation—albeit a shaky one—on which to attempt to construct a national political majority."</p>'+
+      'In 1853, Henry Yesler founded a sawmill to process nearby the evergreen forests that covered the hills surrounding Elliot Bay. Yesler\'s endeaovr was critical to Seattle\'s development, as it\'s ability to produce timber on an industrial distinguished the new Euro-American settlement from competing logging camps and farming communtiies established throughout Western Washington at the time. Most of timber was exported to California, linking Seattle to a broader national economy from its inception. Because of large number of young male workers it attracted, the sawmill also served as the locus for Seattle\'s first vice district. This district became known as "Skid Row" for the way logs were skidded down the hillside nearby to the sawmill on the waterfront, which over time became a generic name given to similar vice district throughout the world, Yesler\'s enterprise was also notable in that it made full use of the surrounding Native communities in its operation. Yesler himself married a Duwamish woman and fought against the removal of Natives to reservations. In the picture below, a group of Yesler\'s Native employees pose for a picture in front of the mill\'s cookhouse.</p>'+
       '</div>'+
       '<img src=http://ww3.hdnux.com/photos/02/72/54/764726/3/628x471.jpg>'+
       '</div>';
@@ -878,7 +891,7 @@ overmap.addEventListener('click', function(){
     icon: 'greypin.png'
     });
 
-  var chickenMarker = new google.maps.Marker({
+  var higoMarker = new google.maps.Marker({
     position: higo,
     map: map,
     icon: 'greypin.png'
@@ -889,6 +902,13 @@ overmap.addEventListener('click', function(){
     map: map,
     icon: 'greypin.png'
     });
+
+  var duwamishMarker = new google.maps.Marker({
+    position: duwamish,
+    map: map,
+    icon: 'greypin.png'
+    });
+
   $("#target").addClass("innerHeader");
   $("h1").text("Seattle Backstory");
   $("p").add('subhead').text("All the History that is fit to Map");
