@@ -143,17 +143,16 @@ function initialize() {
     icon: 'greypin.png'
     });
 
+  //    adviseString = '<div id="pop-up">'+
+  //   '<h2>Please click on a category below to find out more !</h2>'+ 
+  //   '<div>'
 
-    //  adviseString = '<div id="pop-up">'+
-    // '<h2>Please click on a category below to find out more !</h2>'+ 
-    // '<div>'
+  //   var regradeInfo = new google.maps.InfoWindow({
+  //       content: adviseString
+  //   });
 
-    // var regradeInfo = new google.maps.InfoWindow({
-    //     content: adviseString
-    // });
-
-    // google.maps.event.addListener(regradeMarker, 'click', function() {
-    //     regradeInfo.open(map, regradeMarker);
+  //   google.maps.event.addListener(regradeMarker, 'click', function() {
+  //       regradeInfo.open(map, regradeMarker);
   // });
 }
 
@@ -164,6 +163,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //add event listener to highlight map category - content for info window's is drawn from info.js file
 
 //culture event
+
 culture.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
@@ -249,6 +249,7 @@ culture.addEventListener('click', function() {
 
 
 //civil right event 
+
 civilRights.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
@@ -416,6 +417,7 @@ commerce.addEventListener('click', function() {
 
 
 //environment event 
+
 environment.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
@@ -491,6 +493,7 @@ environment.addEventListener('click', function() {
 
 
 //social policy event 
+
 socialPolicy.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
@@ -560,7 +563,9 @@ socialPolicy.addEventListener('click', function() {
 
 
 
+
 //technology event 
+
 technology.addEventListener('click', function() {
     var cat = this.children[0].getAttribute('id');
     console.log(cat);
