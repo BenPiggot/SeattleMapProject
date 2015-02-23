@@ -168,6 +168,7 @@ nav li {
 }
 
 @media screen and (max-width: 600px) {
+  
         #mobile-wrapper {
             padding-top: 0.5em;
         }
