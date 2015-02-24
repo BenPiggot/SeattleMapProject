@@ -201,7 +201,7 @@ nav li {
 
 }
 
-@media (max-width: 400px) {
+@media (max-width: 350px) {
   
         #mobile-wrapper {
             padding-top: 0.5em;
@@ -243,6 +243,11 @@ nav li {
 
         img {
             width: 200px;
+            height: auto;
+        }
+
+        #big-img {
+            width: 90%;
             height: auto;
         }
 
