@@ -449,12 +449,6 @@ environment.addEventListener('click', function() {
     icon: 'greypin.png'
     })
 
-  var discoveryMarker = new google.maps.Marker({
-    position: discovery,
-    map: map,
-    icon: 'greypin.png'
-    });
-
 
   var hooverInfo = new google.maps.InfoWindow({
       content: contentString[0]
@@ -731,6 +725,19 @@ overmap.addEventListener('click', function(){
     map: map,
     icon: 'greypin.png'
     });
+
+    var discoveryMarker = new google.maps.Marker({
+    position: discovery,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var terraceMarker = new google.maps.Marker({
+    position: terrace,
+    map: map,
+    icon: 'greypin.png'
+    });
+
 
   $("#target").addClass("innerHeader");
   $("h1").text("Seattle Backstory");
