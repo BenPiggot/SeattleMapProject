@@ -165,7 +165,7 @@ nav li {
     padding-bottom: 1.1em;
 }
 
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
   
         #mobile-wrapper {
             padding-top: 0.5em;
@@ -200,3 +200,51 @@ nav li {
         }
 
 }
+
+@media (max-width: 400px) {
+  
+        #mobile-wrapper {
+            padding-top: 0.5em;
+        }
+
+        .innerHeader h1 {
+            font-size: 2.4em;
+            padding-top: 0em;
+        }
+
+        #subhead {
+            font-size: 1.2em;
+        }
+
+        #googleMap {
+            position: relative;
+            min-height: 100%;
+        }
+
+        .return { 
+           vertical-align: middle;
+           bottom: 0.4em;
+           height: 1.6em;
+           width: 5em;
+           font-size: 1.2em;
+        }
+
+        nav li {
+           display: inline-block;
+           text-align: center;
+           font-size: 1em;
+           padding: 10px;
+           width: 140px
+        }
+
+        nav a {
+            font-size: 20px;
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+        }
+
+}
+
