@@ -32,7 +32,6 @@ h1 {
     margin-bottom: 0px;
 }*/
 
-
 #googleMap {
     min-height: 100%;
     z-index: 0;
@@ -44,7 +43,7 @@ h1 {
     top: 0em;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.62);
 }
 
 .innerHeader h1 {
@@ -158,43 +157,7 @@ nav li {
     padding-bottom: 1.1em;
 }
 
-@media (max-width: 600px) {
-  
-        #mobile-wrapper {
-            padding-top: 0.5em;
-        }
-
-        .innerHeader h1 {
-            font-size: 3.3em;
-            padding-top: 0em;
-        }
-
-        #subhead {
-            font-size: 1.4em;
-        }
-
-        #googleMap {
-            position: relative;
-            min-height: 100%;
-        }
-
-        .return { 
-           vertical-align: middle;
-           bottom: 0.5em;
-        }
-
-        nav a {
-            font-size: 23px;
-        }
-
-        img {
-            width: 300px;
-            height: auto;
-        }
-
-}
-
-@media (max-width: 350px) {
+@media only screen and (max-width: 350px) {
   
         #mobile-wrapper {
             padding-top: 0.5em;
@@ -209,11 +172,6 @@ nav li {
             font-size: 1.2em;
         }
 
-        #googleMap {
-            position: relative;
-            min-height: 100%;
-        }
-
         .return { 
            vertical-align: middle;
            bottom: 0.4em;
@@ -223,10 +181,6 @@ nav li {
         }
 
         nav li {
-           display: inline-block;
-           text-align: center;
-           font-size: 1em;
-           padding: 10px;
            width: 140px
         }
 
@@ -246,3 +200,55 @@ nav li {
 
 }
 
+@media only screen and (min-width: 351px) and (max-width: 600px) {
+  
+        #mobile-wrapper {
+            padding-top: 0.5em;
+        }
+
+        .innerHeader h1 {
+            font-size: 3.3em;
+            padding-top: 0em;
+        }
+
+        #subhead {
+            font-size: 1.4em;
+        }
+
+        .return { 
+           vertical-align: middle;
+           bottom: 0.5em;
+        }
+
+        nav a {
+            font-size: 23px;
+        }
+
+        nav li {
+            width: 160px;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+        }
+}
+
+@media only screen and (min-width: 1399px) {
+
+        .innerHeader h1 {
+            font-size: 7em;
+        }
+
+        #subhead {
+            font-size: 2.5em;
+        }
+
+        nav a {
+          font-size: 30px;
+        }
+
+        nav li {
+          width: 200px;
+        }
+}

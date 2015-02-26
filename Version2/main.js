@@ -54,6 +54,10 @@ function initialize() {
   var mapProp = {
     center: new google.maps.LatLng(47.615, -122.320850),
     zoom: 11,
+    panControl: false,
+    zoomControl: false,
+    scaleControl: false,
+    streetViewControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: shiftWorker 
     };
@@ -649,6 +653,10 @@ overmap.addEventListener('click', function(){
     var mapProp = {
     center: new google.maps.LatLng(47.615, -122.320850),
     zoom: 11,
+    panControl: false,
+    zoomControl: false,
+    scaleControl: false,
+    streetViewControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
         styles: shiftWorker
   	};
