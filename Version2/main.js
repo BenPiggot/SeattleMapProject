@@ -455,7 +455,7 @@ environment.addEventListener('click', function() {
 
 
   var hooverInfo = new google.maps.InfoWindow({
-      content: contentString[0]
+      content: contentString[0],
   });
 
     google.maps.event.addListener(hooverMarker, 'click', function() {
@@ -468,6 +468,7 @@ environment.addEventListener('click', function() {
 
     google.maps.event.addListener(regradeMarker, 'click', function() {
         regradeInfo.open(map, regradeMarker);
+
   });
 
   var duwamishInfo = new google.maps.InfoWindow({
@@ -476,6 +477,7 @@ environment.addEventListener('click', function() {
 
     google.maps.event.addListener(duwamishMarker, 'click', function() {
         duwamishInfo.open(map, duwamishMarker);
+
   });
 
   $("h1").text("");
