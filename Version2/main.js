@@ -14,7 +14,12 @@ var kingdome = new google.maps.LatLng(47.595278, -122.331389);
 var amazon = new google.maps.LatLng(47.582248,-122.334202);
 var discovery = new google.maps.LatLng(47.661297,-122.417806);
 var terrace = new google.maps.LatLng(47.601696,-122.319512);
-var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft, duwamish, boeing, t91, kingdome, amazon, terrace];
+var dicks = new google.maps.LatLng(47.619315,-122.321191);
+var boeing737 = new google.maps.LatLng(47.498261,-122.211343);
+var lake = new google.maps.LatLng(47.635376,-122.276514);
+var busing = new google.maps.LatLng(47.676997,-122.313666);
+var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft, duwamish, boeing, t91, kingdome, amazon, 
+                  terrace, dicks, boeing737, lake, busing];
 
 
 // declare google map style arrays
@@ -147,6 +152,30 @@ function initialize() {
     icon: 'greypin.png'
     });
 
+    var dicksMarker = new google.maps.Marker({
+    position: dicks,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var boeing737Marker = new google.maps.Marker({
+    position: boeing737,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var lakeMarker = new google.maps.Marker({
+    position: lake,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var busingMarker = new google.maps.Marker({
+    position: busing,
+    map: map,
+    icon: 'greypin.png'
+    });
+
   //    adviseString = '<div id="pop-up">'+
   //   '<h2>Please click on a category below to find out more !</h2>'+ 
   //   '<div>'
@@ -176,20 +205,14 @@ culture.addEventListener('click', function() {
 
 	var mapProp = {
     center: new google.maps.LatLng(47.605, -122.320850),
-    zoom: 12,
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: shadowAgent
   	};
   	var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-  var hooverMarker = new google.maps.Marker({
-    position: locations[0],
-    map: map,
-    icon: 'greypin.png',
-    });
-
-  var regradeMarker = new google.maps.Marker({
-    position: regrade,
+    var dicksMarker = new google.maps.Marker({
+    position: dicks,
     map: map,
     icon: 'greypin.png'
     });
@@ -206,39 +229,30 @@ culture.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
+  var infowindow = new google.maps.InfoWindow({});
 
-  var hooverInfo = new google.maps.InfoWindow({
-      content: contentString[0]
+  google.maps.event.addListener(dicksMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[14]
+    });
+    infowindow.open(map, dicksMarker);
   });
 
-    google.maps.event.addListener(hooverMarker, 'click', function() {
-        hooverInfo.open(map, hooverMarker);
+  google.maps.event.addListener(kingdomeMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[2]
+    });
+    infowindow.open(map, kingdomeMarker);
   });
 
-
-  var regradeInfo = new google.maps.InfoWindow({
-      content: contentString[1]
-  });
-
-    google.maps.event.addListener(regradeMarker, 'click', function() {
-        regradeInfo.open(map, regradeMarker);
-  });
-
-   
-  var kingdomeInfo = new google.maps.InfoWindow({
-      content: contentString[2]
-  });
-
-    google.maps.event.addListener(kingdomeMarker, 'click', function() {
-        kingdomeInfo.open(map, kingdomeMarker);
-  });
-
-  var sickInfo = new google.maps.InfoWindow({
-      content: contentString[3]
-  });
-
-    google.maps.event.addListener(sickMarker, 'click', function() {
-        sickInfo.open(map, sickMarker);
+   google.maps.event.addListener(sickMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[3]
+    });
+    infowindow.open(map, sickMarker);
   });
 
   $("h1").text("");
@@ -261,7 +275,7 @@ civilRights.addEventListener('click', function() {
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.6375, -122.320850),
-    zoom: 12,
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: paleDawn
     };
@@ -279,50 +293,37 @@ civilRights.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-  var yeslerMarker = new google.maps.Marker({
-    position: yesler,
-    map: map,
-    icon: 'greypin.png'
-    });
-
   var higoMarker = new google.maps.Marker({
     position: higo,
     map: map,
     icon: 'greypin.png'
     });
 
-  var discoveryInfo = new google.maps.InfoWindow({
-      content: contentString[12]
+
+  var infowindow = new google.maps.InfoWindow({});
+
+  google.maps.event.addListener(discoveryMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[12]
+    });
+    infowindow.open(map, discoveryMarker);
   });
 
-    google.maps.event.addListener(discoveryMarker, 'click', function() {
-        discoveryInfo.open(map, discoveryMarker);
+   google.maps.event.addListener(chickenMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[4]
+    });
+    infowindow.open(map, chickenMarker);
   });
 
-
-  var chickenInfo = new google.maps.InfoWindow({
-      content: contentString[4]
-  });
-
-    google.maps.event.addListener(chickenMarker, 'click', function() {
-        chickenInfo.open(map, chickenMarker);
-  });
-
-  var yeslerInfo = new google.maps.InfoWindow({
-      content: contentString[5]
-  });
-
-    google.maps.event.addListener(yeslerMarker, 'click', function() {
-        yeslerInfo.open(map, yeslerMarker);
-  });
-
-
-  var higoInfo = new google.maps.InfoWindow({
-      content: contentString[6]
-  });
-
-    google.maps.event.addListener(higoMarker, 'click', function() {
-        higoInfo.open(map, higoMarker);
+   google.maps.event.addListener(higoMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[6]
+    });
+    infowindow.open(map, higoMarker);
   });
 
   $("h1").text("");
@@ -344,7 +345,7 @@ commerce.addEventListener('click', function() {
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.590, -122.320850),
-    zoom: 12,
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: mostlyGray
     };
@@ -352,12 +353,6 @@ commerce.addEventListener('click', function() {
 
   var t91Marker = new google.maps.Marker({
     position: t91,
-    map: map,
-    icon: 'greypin.png'
-    });
-
-  var regradeMarker = new google.maps.Marker({
-    position: regrade,
     map: map,
     icon: 'greypin.png'
     });
@@ -374,38 +369,30 @@ commerce.addEventListener('click', function() {
     icon: 'greypin.png'
     })
 
+  var infowindow = new google.maps.InfoWindow({});
 
-  var t91Info = new google.maps.InfoWindow({
-      content: contentString[9]
+  google.maps.event.addListener(t91Marker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[9]
+    });
+    infowindow.open(map, t91Marker);
   });
 
-    google.maps.event.addListener(t91Marker, 'click', function() {
-        t91Info.open(map, t91Marker);
+  google.maps.event.addListener(yeslerMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[5]
+    });
+    infowindow.open(map, yeslerMarker);
   });
 
-  var regradeInfo = new google.maps.InfoWindow({
-      content: contentString[1]
-  });
-
-    google.maps.event.addListener(regradeMarker, 'click', function() {
-        regradeInfo.open(map, regradeMarker);
-  });
-
-  var yeslerInfo = new google.maps.InfoWindow({
-      content: contentString[5]
-  });
-
-    google.maps.event.addListener(yeslerMarker, 'click', function() {
-        yeslerInfo.open(map, yeslerMarker);
-  });
-
-
-  var boeingInfo = new google.maps.InfoWindow({
-      content: contentString[7]
-  });
-
-    google.maps.event.addListener(boeingMarker, 'click', function() {
-        boeingInfo.open(map, boeingMarker);
+   google.maps.event.addListener(boeingMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[7]
+    });
+    infowindow.open(map, boeingMarker);
   });
     
   $("h1").text("");
@@ -429,14 +416,14 @@ environment.addEventListener('click', function() {
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
     center: new google.maps.LatLng(47.590, -122.320850),
-    zoom: 12,
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: Nature
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-  var hooverMarker = new google.maps.Marker({
-    position: locations[0],
+  var lakeMarker = new google.maps.Marker({
+    position: lake,
     map: map,
     icon: 'greypin.png',
     });
@@ -451,33 +438,32 @@ environment.addEventListener('click', function() {
     position: duwamish,
     map: map,
     icon: 'greypin.png'
-    })
+    });
 
+var infowindow = new google.maps.InfoWindow({});
 
-  var hooverInfo = new google.maps.InfoWindow({
-      content: contentString[0],
+  google.maps.event.addListener(lakeMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[16]
+    });
+    infowindow.open(map, lakeMarker);
   });
 
-    google.maps.event.addListener(hooverMarker, 'click', function() {
-        hooverInfo.open(map, hooverMarker);
+   google.maps.event.addListener(regradeMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[1]
+    });
+    infowindow.open(map, regradeMarker);
   });
 
-  var regradeInfo = new google.maps.InfoWindow({
-      content: contentString[1]
-  });
-
-    google.maps.event.addListener(regradeMarker, 'click', function() {
-        regradeInfo.open(map, regradeMarker);
-
-  });
-
-  var duwamishInfo = new google.maps.InfoWindow({
-      content: contentString[8]
-  });
-
-    google.maps.event.addListener(duwamishMarker, 'click', function() {
-        duwamishInfo.open(map, duwamishMarker);
-
+   google.maps.event.addListener(duwamishMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[8]
+    });
+    infowindow.open(map, duwamishMarker);
   });
 
   $("h1").text("");
@@ -500,8 +486,8 @@ socialPolicy.addEventListener('click', function() {
     // document.getElementById('toHide').style.height = "0%";
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
-    center: new google.maps.LatLng(47.605, -122.320850),
-    zoom: 12,
+    center: new google.maps.LatLng(47.6378849,-122.3368832),
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: grayScale
     };
@@ -519,37 +505,36 @@ socialPolicy.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-  var sickMarker = new google.maps.Marker({
-    position: sick,
+  var busingMarker = new google.maps.Marker({
+    position: busing,
     map: map,
     icon: 'greypin.png'
     });
 
+var infowindow = new google.maps.InfoWindow({});
 
-  var hooverInfo = new google.maps.InfoWindow({
-      content: contentString[0]
+  google.maps.event.addListener(hooverMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[0]
+    });
+    infowindow.open(map, hooverMarker);
   });
 
-    google.maps.event.addListener(hooverMarker, 'click', function() {
-        hooverInfo.open(map, hooverMarker);
+   google.maps.event.addListener(terraceMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[13]
+    });
+    infowindow.open(map, terraceMarker);
   });
 
- 
-  var terraceInfo = new google.maps.InfoWindow({
-      content: contentString[13]
-  });
-
-    google.maps.event.addListener(terraceMarker, 'click', function() {
-        terraceInfo.open(map, terraceMarker);
-  });
-
-
-  var sickInfo = new google.maps.InfoWindow({
-      content: contentString[3]
-  });
-
-    google.maps.event.addListener(sickMarker, 'click', function() {
-        sickInfo.open(map, sickMarker);
+  google.maps.event.addListener(busingMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[17]
+    });
+    infowindow.open(map, busingMarker);
   });
 
   $("h1").text("");
@@ -572,14 +557,14 @@ technology.addEventListener('click', function() {
     // document.getElementById('toHide').style.height = "0%";
     // document.getElementById('googleMap').style.height = "100%";
     var mapProp = {
-    center: new google.maps.LatLng(47.605, -122.320850),
-    zoom: 12,
+    center: new google.maps.LatLng(47.5592102,-122.2511996),
+    zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: mint
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-    var amazonMarker = new google.maps.Marker({
+  var amazonMarker = new google.maps.Marker({
     position: amazon,
     map: map,
     icon: 'greypin.png'
@@ -591,48 +576,36 @@ technology.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-  var yeslerMarker = new google.maps.Marker({
-    position: yesler,
+  var boeing737Marker = new google.maps.Marker({
+    position: boeing737,
     map: map,
     icon: 'greypin.png'
     });
 
-  var sickMarker = new google.maps.Marker({
-    position: sick,
-    map: map,
-    icon: 'greypin.png'
+  var infowindow = new google.maps.InfoWindow({});
+
+  google.maps.event.addListener(amazonMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[11]
     });
-
-  var amazonInfo = new google.maps.InfoWindow({
-      content: contentString[11]
+    infowindow.open(map, amazonMarker);
   });
 
-    google.maps.event.addListener(amazonMarker, 'click', function() {
-        amazonInfo.open(map, amazonMarker);
+   google.maps.event.addListener(microsoftMarker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[10]
+    });
+    infowindow.open(map, microsoftMarker);
   });
 
-  var microsoftInfo = new google.maps.InfoWindow({
-      content: contentString[10]
-  });
-
-    google.maps.event.addListener(microsoftMarker, 'click', function() {
-        microsoftInfo.open(map, microsoftMarker);
-  });
-
-  var yeslerInfo = new google.maps.InfoWindow({
-      content: contentString[5]
-  });
-
-    google.maps.event.addListener(yeslerMarker, 'click', function() {
-        yeslerInfo.open(map, yeslerMarker);
-  });
-
-  var sickInfo = new google.maps.InfoWindow({
-      content: contentString[3]
-  });
-
-    google.maps.event.addListener(sickMarker, 'click', function() {
-        sickInfo.open(map, sickMarker);
+  google.maps.event.addListener(boeing737Marker, 'click', function() {
+    infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+    content: contentString[15]
+    });
+    infowindow.open(map, boeing737Marker);
   });
 
   $("h1").text("");
@@ -748,6 +721,29 @@ overmap.addEventListener('click', function(){
     icon: 'greypin.png'
     });
 
+    var dicksMarker = new google.maps.Marker({
+    position: dicks,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var boeing737Marker = new google.maps.Marker({
+    position: boeing737,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var lakeMarker = new google.maps.Marker({
+    position: lake,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var busingMarker = new google.maps.Marker({
+    position: busing,
+    map: map,
+    icon: 'greypin.png'
+    });
 
   $("#target").addClass("innerHeader");
   $("h1").text("Seattle Backstory");

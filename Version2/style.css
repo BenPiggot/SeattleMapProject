@@ -7,30 +7,10 @@
      padding: 0px;
 }
 
-/*body {
-	background-image: url("https://img1.etsystatic.com/001/0/6228198/il_340x270.403889905_c77d.jpg");
-	background-position: center; 
-    background-size: cover;
-}*/
-
 html, body {
       height: 100%;
       margin: 0;
     }
-
-/*header {
-    height: 21%;
-    background-color: #aaa;
-    border-bottom: 2px solid white;
-}
-
-h1 {
-    font-size: 3.5em;
-    font-family: 'Oswald', sans-serif;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 0px;
-}*/
 
 #googleMap {
     min-height: 100%;
@@ -114,10 +94,12 @@ nav a {
      text-decoration: none;
      font-size: 25px;
      cursor: pointer;
+/*     transition: 500ms;*/
 }
 
 nav a:hover {
     color: #000;
+/*    transform: rotate(360deg);*/
 }
 
 nav ul {
@@ -279,7 +261,7 @@ nav li {
 
         #pop-up img {
           height: auto;
-          width: 400px;
+          width: 330px;
           float: right;
           margin-left: 3px;
           margin-bottom: 3px;
