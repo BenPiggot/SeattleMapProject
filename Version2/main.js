@@ -18,8 +18,9 @@ var dicks = new google.maps.LatLng(47.619315,-122.321191);
 var boeing737 = new google.maps.LatLng(47.498261,-122.211343);
 var lake = new google.maps.LatLng(47.635376,-122.276514);
 var busing = new google.maps.LatLng(47.676997,-122.313666);
+var dialysis = new google.maps.LatLng(47.648498, -122.306331);
 var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft, duwamish, boeing, t91, kingdome, amazon, 
-                  terrace, dicks, boeing737, lake, busing];
+                  terrace, dicks, boeing737, lake, busing, dialysis];
 
 
 // declare google map style arrays
@@ -159,12 +160,6 @@ function initialize() {
     icon: 'greypin.png'
     });
 
-    var boeing737Marker = new google.maps.Marker({
-    position: boeing737,
-    map: map,
-    icon: 'greypin.png'
-    });
-
     var lakeMarker = new google.maps.Marker({
     position: lake,
     map: map,
@@ -177,6 +172,11 @@ function initialize() {
     icon: 'greypin.png'
     });
 
+    var dialysisMarker = new google.maps.Marker({
+    position: dialysis,
+    map: map,
+    icon: 'greypin.png'
+    });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -582,14 +582,25 @@ var infowindow = new google.maps.InfoWindow({});
 
 technology.addEventListener('click', function() {
 
+  if (screen.width <= 600) {
     var mapProp = {
-    center: new google.maps.LatLng(47.5692102,-122.271996),
+    center: new google.maps.LatLng(47.612547,-122.2881356),
     zoom: 11,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: mint
     };
     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-  
+  }
+  else {
+    var mapProp = {
+    center: new google.maps.LatLng(47.612547,-122.2981356),
+    zoom: 12,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: mint
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+  }
+
   var amazonMarker = new google.maps.Marker({
     position: amazon,
     map: map,
@@ -602,8 +613,8 @@ technology.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-  var boeing737Marker = new google.maps.Marker({
-    position: boeing737,
+  var dialysisMarker = new google.maps.Marker({
+    position: dialysis,
     map: map,
     icon: 'greypin.png'
     });
@@ -626,12 +637,12 @@ technology.addEventListener('click', function() {
     infowindow.open(map, microsoftMarker);
   });
 
-  google.maps.event.addListener(boeing737Marker, 'click', function() {
+  google.maps.event.addListener(dialysisMarker, 'click', function() {
     infowindow.close();
     infowindow = new google.maps.InfoWindow({
-    content: contentString[15]
+    content: contentString[18]
     });
-    infowindow.open(map, boeing737Marker);
+    infowindow.open(map, dialysisMarker);
   });
 
   $("h1").text("");
@@ -753,12 +764,6 @@ overmap.addEventListener('click', function(){
     icon: 'greypin.png'
     });
 
-    var boeing737Marker = new google.maps.Marker({
-    position: boeing737,
-    map: map,
-    icon: 'greypin.png'
-    });
-
     var lakeMarker = new google.maps.Marker({
     position: lake,
     map: map,
@@ -767,6 +772,12 @@ overmap.addEventListener('click', function(){
 
     var busingMarker = new google.maps.Marker({
     position: busing,
+    map: map,
+    icon: 'greypin.png'
+    });
+
+    var dialysisMarker = new google.maps.Marker({
+    position: dialysis,
     map: map,
     icon: 'greypin.png'
     });

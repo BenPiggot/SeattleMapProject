@@ -164,5 +164,14 @@
       '</div>';
 
 
+      contentString[18] = '<div id="pop-up">'+
+      '<h2>The Invention of Dialysis</h2>'+ 
+      '<img id="big-img" src=http://www.washington.edu/alumni/columns/march10/images/shunt.jpg>'+
+      '<div id="bodyContent">'+
+      '<p>' +
+      'Kidney dialysis was first used as a means of treating kidney failure in 1943. However, initial dialysis machines were only capable of treating people with temporary kidney failure. Scientists at the University of Washington\'s Medical School would have the distninction of creating the first viable means of providing treatment for those with chronic kidney failure. In 1960, Dr. Belding Scribner invented what became known as the "Scribner Shunt", a teflon tube designed to provide an efficient way of taking out toxic blood a patient\'s kidneys were failing to process and cleansing it externally. (See the image to the right from 1960 of Clyde Shields, the first person to receive the new dialysis treatment). At first, this new treatment could only be applied in a hospital, but subsequent advances made by Scribner\'s team during the 1960s allowed for home dialysis units as well. It is not an exaggeration to say that the University of Washington\'s innovations have saved and prolonged the lives of millions of people around the world. Prior to the 1960s, chronic kidney disease was a death sentence for those who had it. Now, such patients can expect to have a normal life expectancy. Scribner\'s advances were also an example of the University of Washington\'s development into a major research institution since the 1950s. </p>'+
+      '</div>'+
+      '</div>';
+
 
 
