@@ -23,6 +23,7 @@ var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft, duwami
                   terrace, dicks, boeing737, lake, busing, dialysis];
 
 
+
 // declare google map style arrays
 
 var blueEssence = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
@@ -42,6 +43,8 @@ var grayScale = [{"featureType":"all","elementType":"all","stylers":[{"saturatio
 var mint = [{"stylers":[{"hue":"#16a085"},{"saturation":0}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]}]
 
 var subtleGrayscale = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"on"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
+
+
 
 //define cateogry variables, which will be used as event handlers
 
@@ -183,7 +186,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
-//add event listener to highlight map category - content for info window's is drawn from info.js file
+//add event listeners to highlight map category - content for info window's is drawn from info.js file
 
 //culture event
 
@@ -574,7 +577,6 @@ var infowindow = new google.maps.InfoWindow({});
 
 
 
-
 //technology event 
 
 technology.addEventListener('click', function() {
@@ -786,4 +788,3 @@ overmap.addEventListener('click', function(){
  },false);
 
 // Google Maps API Key: AIzaSyBew_5PeJg2HpZxXL0j7CX0LCG4rzdFUpA
-
