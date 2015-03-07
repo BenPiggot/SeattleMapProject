@@ -304,7 +304,6 @@ civilRights.addEventListener('click', function() {
     icon: 'greypin.png'
     });
 
-
   var infowindow = new google.maps.InfoWindow({});
 
   google.maps.event.addListener(discoveryMarker, 'click', function() {
@@ -419,7 +418,6 @@ commerce.addEventListener('click', function() {
 
 
 
-
 //environment event 
 
 environment.addEventListener('click', function() {
@@ -494,7 +492,6 @@ var infowindow = new google.maps.InfoWindow({});
   $("#over_map").addClass('return').text("MAIN MENU");
 
  },false);
-
 
 
 
@@ -652,7 +649,6 @@ technology.addEventListener('click', function() {
   $("#over_map").addClass('return').text("MAIN MENU");
 
  },false);
-
 
 
 
