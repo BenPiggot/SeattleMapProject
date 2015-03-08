@@ -19,8 +19,7 @@ var boeing737 = new google.maps.LatLng(47.498261,-122.211343);
 var lake = new google.maps.LatLng(47.635376,-122.276514);
 var busing = new google.maps.LatLng(47.676997,-122.313666);
 var dialysis = new google.maps.LatLng(47.648498, -122.306331);
-var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft, duwamish, boeing, t91, kingdome, amazon, 
-                  terrace, dicks, boeing737, lake, busing, dialysis];
+var locations = [hoover, regrade, yesler, sick, chicken, higo, microsoft, duwamish, boeing, t91, kingdome, amazon, terrace, dicks, boeing737, lake, busing, dialysis];
 
 
 
