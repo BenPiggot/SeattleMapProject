@@ -131,18 +131,19 @@ nav li {
 }
 
 #pop-up img {
-  height: auto;
-  width: 330px;
-  float: right;
-  margin-left: 3px;
-  margin-bottom: 3px;
+ /*   height: auto;
+    width: 330px;*/
+    float: right;
+    margin-left: 3px;
+    margin-bottom: 3px;
 }
 
+/*
 #bodyContent {
     margin-top: 0.1em;
     padding-bottom: 0.5em;
-}
-
+  }
+*/
 
 @media only screen and (max-width: 400px) {
   
