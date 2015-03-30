@@ -29,7 +29,7 @@ var blueEssence = [{"featureType":"landscape.natural","elementType":"geometry.fi
 
 var shiftWorker = [{"stylers":[{"saturation":-100},{"gamma":0.6}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"saturation":50},{"gamma":0},{"hue":"#50a5d1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"color":"#333333"}]},{"featureType":"road.local","elementType":"labels.text","stylers":[{"weight":0.5},{"color":"#333333"}]},{"featureType":"transit.station","elementType":"labels.icon","stylers":[{"gamma":1},{"saturation":50}]}]
 
-var shadowAgent = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape.natural","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-23"},{"lightness":"7"},{"visibility":"on"},{"gamma":"1"},{"hue":"#ff1800"},{"weight":"0.75"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e74c3c"},{"saturation":"-59"},{"lightness":"30"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"on"},{"hue":"#ff1800"},{"saturation":"2"},{"lightness":"2"},{"weight":"0.75"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"on"},{"saturation":"-100"},{"hue":"#f2f2f2"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2c3e50"},{"visibility":"on"}]}] 
+var shadowAgent = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape.natural","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-23"},{"lightness":"7"},{"visibility":"on"},{"gamma":"1"},{"hue":"#ff1800"},{"weight":"0.75"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e74c3c"},{"saturation":"-59"},{"lightness":"30"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"on"},{"hue":"#ff1800"},{"saturation":"2"},{"lightness":"2"},{"weight":"0.75"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"on"},{"saturation":"-100"},{"hue":"#f2f2f2"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2c3e50"},{"visibility":"on"}]}]
 
 var Nature = [{"featureType":"landscape","stylers":[{"hue":"#FFA800"},{"saturation":0},{"lightness":0},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#53FF00"},{"saturation":-73},{"lightness":40},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FBFF00"},{"saturation":0},{"lightness":0},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#00FFFD"},{"saturation":0},{"lightness":30},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#00BFFF"},{"saturation":6},{"lightness":8},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#679714"},{"saturation":33.4},{"lightness":-25.4},{"gamma":1}]}]
 
@@ -56,7 +56,7 @@ var technology = document.getElementById("technology");
 
 
 
-//initialize Google map 
+//initialize Google map
 
 function initialize() {
   var home = new google.maps.LatLng(47.5645742,-122.2980807);
@@ -68,7 +68,7 @@ function initialize() {
     scaleControl: false,
     streetViewControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: shiftWorker 
+    styles: shiftWorker
     };
   var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
@@ -190,7 +190,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   var $window = $(window),
     windowHeight = $window.innerHeight();
     offset = $e.offset();
-    return windowHeight - offset.top 
+    return windowHeight - offset.top
 };
 
 //add event listeners to highlight map category - content for info window's is drawn from info.js file
@@ -249,7 +249,7 @@ culture.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-110);
     }
-    }, 500);
+    }, 600);
 });
 
   google.maps.event.addListener(kingdomeMarker, 'click', function() {
@@ -261,9 +261,9 @@ culture.addEventListener('click', function() {
 	setTimeout(function() {
 	console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-70);
+    	map.panBy(0,-90);
     }
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(sickMarker, 'click', function() {
@@ -277,7 +277,7 @@ culture.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-60);
     }
-	}, 500);
+	}, 600);
   });
 
   $("h1").text("");
@@ -285,13 +285,13 @@ culture.addEventListener('click', function() {
   $("div").removeClass("innerHeader");
   $("footer").hide('nav');
   $("#over_map").addClass('return').text("MAIN MENU");
- 
+
  },false);
 
 
 
 
-//civil right event 
+//civil right event
 
 civilRights.addEventListener('click', function() {
 
@@ -343,9 +343,9 @@ civilRights.addEventListener('click', function() {
 	setTimeout(function() {
 	console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-110);
+    	map.panBy(0,-120);
     	}
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(chickenMarker, 'click', function() {
@@ -359,7 +359,7 @@ civilRights.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-110);
     	}
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(higoMarker, 'click', function() {
@@ -373,7 +373,7 @@ civilRights.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-60);
     	}
-	}, 500);
+	}, 600);
   });
 
   $("h1").text("");
@@ -387,7 +387,7 @@ civilRights.addEventListener('click', function() {
 
 
 
-//commerce event 
+//commerce event
 commerce.addEventListener('click', function() {
 
    if (screen.width <= 600) {
@@ -440,7 +440,7 @@ commerce.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-130);
     	}
-	}, 500);
+	}, 600);
   });
 
   google.maps.event.addListener(yeslerMarker, 'click', function() {
@@ -452,9 +452,9 @@ commerce.addEventListener('click', function() {
 	setTimeout(function() {
 	console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-75);
+    	map.panBy(0,-90);
 	    }
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(boeingMarker, 'click', function() {
@@ -468,9 +468,9 @@ commerce.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-60);
         }
-	}, 500);
+	}, 600);
   });
-    
+
   $("h1").text("");
   $("p subhead").text("");
   $("div").removeClass("innerHeader");
@@ -482,7 +482,7 @@ commerce.addEventListener('click', function() {
 
 
 
-//environment event 
+//environment event
 
 environment.addEventListener('click', function() {
 
@@ -536,7 +536,7 @@ var infowindow = new google.maps.InfoWindow({});
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-100);
 	    }
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(regradeMarker, 'click', function() {
@@ -548,9 +548,9 @@ var infowindow = new google.maps.InfoWindow({});
     setTimeout(function() {
     console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-60);
+    	map.panBy(0,-120);
     }
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(duwamishMarker, 'click', function() {
@@ -564,7 +564,7 @@ var infowindow = new google.maps.InfoWindow({});
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-60);
     }
-	}, 500);
+	}, 600);
   });
 
   $("h1").text("");
@@ -578,7 +578,7 @@ var infowindow = new google.maps.InfoWindow({});
 
 
 
-//social policy event 
+//social policy event
 
 socialPolicy.addEventListener('click', function() {
 
@@ -632,7 +632,7 @@ var infowindow = new google.maps.InfoWindow({});
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-60);
     }
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(terraceMarker, 'click', function() {
@@ -646,7 +646,7 @@ var infowindow = new google.maps.InfoWindow({});
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-40);
     	}
-	}, 500);
+	}, 600);
   });
 
   google.maps.event.addListener(busingMarker, 'click', function() {
@@ -658,9 +658,9 @@ var infowindow = new google.maps.InfoWindow({});
 	setTimeout(function() {
 	console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-100);
+    	map.panBy(0,-110);
 	    }
-	}, 500);
+	}, 600);
   });
 
   $("h1").text("");
@@ -674,7 +674,7 @@ var infowindow = new google.maps.InfoWindow({});
 
 
 
-//technology event 
+//technology event
 
 technology.addEventListener('click', function() {
 
@@ -726,9 +726,9 @@ technology.addEventListener('click', function() {
 	setTimeout(function() {
 	console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-75);
+    	map.panBy(0,-90);
 	    }
-	}, 500);
+	}, 600);
   });
 
    google.maps.event.addListener(microsoftMarker, 'click', function() {
@@ -742,7 +742,7 @@ technology.addEventListener('click', function() {
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
     	map.panBy(0,-100);
     	}
-	}, 500);
+	}, 600);
   });
 
   google.maps.event.addListener(dialysisMarker, 'click', function() {
@@ -754,9 +754,9 @@ technology.addEventListener('click', function() {
 	setTimeout(function() {
 	console.log(getViewportOffset($("#googleMap > div > div > div+div > div > div")));
     if (screen.width >= 600 && (getViewportOffset($("#googleMap > div > div > div+div > div > div"))) > 600) {
-    	map.panBy(0,-125);
+    	map.panBy(0,-110);
 	    }
-	}, 500);
+	}, 600);
   });
 
   $("h1").text("");
