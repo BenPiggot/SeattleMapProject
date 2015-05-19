@@ -8,4 +8,5 @@ although I think its ulimate value will be as an educational tool for high schoo
 
 ### Technologies
 Seattle Backstory is built using JavaScript, jQuery, and, especially, the Google Maps API. The project is currently front-end only,
-but I am planning on adding MVC framework (likely node.js) as I continue to develop the idea.
+but I am planning on adding MVC framework (likely node.js) as I continue to develop the idea. To view the site, visit
+http://www.seattlebackstory.com.
