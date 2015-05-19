@@ -1,7 +1,7 @@
   var contentString = [];
 
    contentString[0] = '<div id="pop-up">'+
-      '<h2>Hooverville</h2>'+ 
+      '<h2>Hooverville</h2>'+
       '<img id="big-img" src="images/hoover.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -10,7 +10,7 @@
       '</div>';
 
    contentString[1] = '<div id="pop-up">'+
-	  '<h2>Regrading in Seattle</h2>'+ 
+	  '<h2>Regrading in Seattle</h2>'+
     '<img id="big-img" src="images/regrade.jpg">'+
 	  '<div id="bodyContent">'+
 	  '<p>' +
@@ -19,7 +19,7 @@
 	  '</div>';
 
 	contentString[2] = '<div id="pop-up">'+
-      '<h2>The Kingdome</h2>'+ 
+      '<h2>The Kingdome</h2>'+
       '<img id="big-img" src="images/kingdome.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -28,7 +28,7 @@
       '</div>';
 
     contentString[3] = '<div id="pop-up">'+
-      '<h2>Sick\'s Stadium</h2>'+ 
+      '<h2>Sick\'s Stadium</h2>'+
       '<img src="images/sick.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -37,7 +37,7 @@
       '</div>';
 
     contentString[4] = '<div id="pop-up">'+
-      '<h2>Coon Chicken Inn</h2>'+ 
+      '<h2>Coon Chicken Inn</h2>'+
       '<img src="images/chicken.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -46,7 +46,7 @@
       '</div>';
 
     contentString[5] = '<div id="pop-up">'+
-      '<h2>Yesler\'s Mill</h2>'+ 
+      '<h2>Yesler\'s Mill</h2>'+
       '<img src="images/yesler.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -56,7 +56,7 @@
 
 
     contentString[6] = '<div id="pop-up">'+
-      '<h2>Higo Variety Store</h2>'+ 
+      '<h2>Higo Variety Store</h2>'+
       '<img id="big-img" src="images/higo.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -65,7 +65,7 @@
       '</div>';
 
     contentString[7] = '<div id="pop-up">'+
-      '<h2>Boeing Plant 2</h2>'+ 
+      '<h2>Boeing Plant 2</h2>'+
       '<img id="big-img" src="images/boeing.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -74,7 +74,7 @@
       '</div>';
 
     contentString[8] = '<div id="pop-up">'+
-      '<h2>Duwamish Superfund Site</h2>'+ 
+      '<h2>Duwamish Superfund Site</h2>'+
       '<img id="big-img" src="images/duwamish.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -83,7 +83,7 @@
       '</div>';
 
     contentString[9] = '<div id="pop-up">'+
-      '<h2>Vietnam and Container Shipping</h2>'+ 
+      '<h2>Vietnam and Container Shipping</h2>'+
       '<img id="big-img" src="images/t91.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -92,7 +92,7 @@
       '</div>';
 
     contentString[10] = '<div id="pop-up">'+
-      '<h2>Microsoft</h2>'+ 
+      '<h2>Microsoft</h2>'+
       '<img id="big-img" src="images/microsoft.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -101,7 +101,7 @@
       '</div>';
 
     contentString[11] = '<div id="pop-up">'+
-      '<h2>Amazon</h2>'+ 
+      '<h2>Amazon</h2>'+
       '<img id="big-img" src="images/amazon.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -110,7 +110,7 @@
       '</div>';
 
     contentString[12] = '<div id="pop-up">'+
-      '<h2>Discovery Park</h2>'+ 
+      '<h2>Discovery Park</h2>'+
       '<img src="images/discovery.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -119,7 +119,7 @@
       '</div>';
 
     contentString[13] = '<div id="pop-up">'+
-      '<h2>Yesler Terrace</h2>'+ 
+      '<h2>Yesler Terrace</h2>'+
       '<img id="big-img" src="images/terrace.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -128,7 +128,7 @@
       '</div>';
 
       contentString[14] = '<div id="pop-up">'+
-      '<h2>Dick\'s Drive-In</h2>'+ 
+      '<h2>Dick\'s Drive-In</h2>'+
       '<img id="big-img" src="images/dicks.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -137,7 +137,7 @@
       '</div>';
 
       contentString[15] = '<div id="pop-up">'+
-      '<h2>Boeing 737</h2>'+ 
+      '<h2>Boeing 737</h2>'+
       '<img id="big-img" src="images/boeing.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -146,7 +146,7 @@
       '</div>';
 
       contentString[16] = '<div id="pop-up">'+
-      '<h2>Lake Washington</h2>'+ 
+      '<h2>Lake Washington</h2>'+
       '<img id="big-img" src="images/lake.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -155,7 +155,7 @@
       '</div>';
 
       contentString[17] = '<div id="pop-up">'+
-      '<h2>Busing in Seattle</h2>'+ 
+      '<h2>Busing in Seattle</h2>'+
       '<img id="big-img" src="images/busing.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
@@ -165,7 +165,7 @@
 
 
       contentString[18] = '<div id="pop-up">'+
-      '<h2>The Invention of Dialysis</h2>'+ 
+      '<h2>The Invention of Dialysis</h2>'+
       '<img id="big-img" src="images/dialysis.jpg">'+
       '<div id="bodyContent">'+
       '<p>' +
