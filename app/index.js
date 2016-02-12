@@ -6,10 +6,11 @@ import Root from './components/root';
 const app = express();
 const router = express.Router();
 
+console.log(__dirname)
 
 app.engine('html', hbs({ extname: 'html' }));
 app.set('view engine', 'html');
-app.set('views', '/Users/ben/SeattleMapProject/app/views');
+app.set('views', __dirname + '/views');
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: false}))

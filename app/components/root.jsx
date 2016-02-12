@@ -1,5 +1,8 @@
 import React from 'react';
-import Bar from '/Users/ben/SeattleMapProject/lib/components/bar';
+import path from 'path';
+import Bar from '../components/bar';
+
+
 
 const Yo = React.createClass({
   render() {
