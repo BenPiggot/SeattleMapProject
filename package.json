@@ -2,9 +2,9 @@
   "name": "seattle-map-project",
   "version": "1.0.0",
   "description": "### About I trained as an historian, so I am always looking for ways to use technology as a way of conveying historical information. Seattle Backstory is an example of this desire. At a high level, Seattle Backstory is an urban history website that uses an interactive map as its primary user interface. It is designed to appeal to students, tourists, and interested local residents, although I think its ulimate value will be as an educational tool for high school and college history classes.",
-  "main": "app.js",
+  "main": "./app/index.js",
   "scripts": {
-    "build": "babel --presets es2015 --plugins transform-react-jsx app -d lib"
+    "build": "babel --presets es2015 --plugins transform-react-jsx app -d build"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,9 @@
     "compression": "^1.6.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "pg": "^4.4.4",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.19.2"
   }
 }

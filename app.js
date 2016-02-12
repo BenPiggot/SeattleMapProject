@@ -1,2 +1,3 @@
 require("babel-core/register");
-require('./lib/index');
+require('./build/index');
+

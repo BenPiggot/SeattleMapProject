@@ -14,5 +14,5 @@ export default React.createClass({
         <Yo />
         <Bar />
       </div>
-  }
+    }
 });
