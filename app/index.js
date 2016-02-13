@@ -3,10 +3,21 @@ import bodyParser from 'body-parser';
 import hbs from 'express-handlebars';
 import React from 'react';
 import Root from './components/root';
+import db from '../models'
 const app = express();
 const router = express.Router();
 
-console.log(__dirname)
+db.map.findOrCreate({where: {topic: "civil_rights", theme: 'paleDawn'}})
+  .spread((map, created) => 
+    { map.save().then( () => {
+      console.log('success')
+    })
+  });
+
+db.map.upsert({id: 1, latitude: 47.6130284, longitude: -122.3420645})
+  .then( (map) => {
+    console.log('success')
+  })
 
 app.engine('html', hbs({ extname: 'html' }));
 app.set('view engine', 'html');

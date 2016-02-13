@@ -1,8 +1,5 @@
 import React from 'react';
-import path from 'path';
 import Bar from '../components/bar';
-
-
 
 const Yo = React.createClass({
   render() {
