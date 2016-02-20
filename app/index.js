@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import hbs from 'express-handlebars';
 import React from 'react';
 import Root from './components/root';
+import browserify from 'browserify';
 import db from '../models'
 const app = express();
 const router = express.Router();
@@ -27,10 +28,6 @@ const router = express.Router();
 //     })
 //   })
 
-
-app.engine('html', hbs({ extname: 'html' }));
-app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
