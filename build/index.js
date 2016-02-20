@@ -55,14 +55,16 @@ app.engine('html', (0, _expressHandlebars2.default)({ extname: 'html' }));
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
+
 app.use(_express2.default.static(__dirname + "/public"));
 app.use(_bodyParser2.default.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
   _models2.default.map.find({ where: { id: 1 } }).then(function (map) {
-    res.render('index', {
-      reactHtml: _react2.default.renderToString(_react2.default.createElement(_root2.default, { map: map }))
-    });
+    res.render('index', { map: map });
   });
 });
 

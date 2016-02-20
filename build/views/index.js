@@ -8,12 +8,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _bar = require('../components/bar');
-
-var _bar2 = _interopRequireDefault(_bar);
-
-var _reactGoogleMaps = require('react-google-maps');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Yo = _react2.default.createClass({
@@ -31,9 +25,6 @@ var Yo = _react2.default.createClass({
 });
 
 exports.default = _react2.default.createClass({
-  handleClick: function handleClick() {
-    console.log('You clicked!');
-  },
   initialize: function initialize() {
     var mapProp = {
       center: new google.maps.LatLng(31.648498, -40),
@@ -49,21 +40,23 @@ exports.default = _react2.default.createClass({
     var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
   },
   componentDidMount: function componentDidMount() {
+    debugger;
+    console.log('yooooo');
     google.maps.event.addDomListener(window, 'load', this.initialize);
   },
   render: function render() {
     return _react2.default.createElement(
       'div',
-      { onClick: this.handleClick },
+      null,
       _react2.default.createElement(
         'div',
-        { onClick: this.handleClick },
+        null,
         'Hello Ben, ',
         this.props.map.topic,
         ' '
       ),
-      _react2.default.createElement(Yo, { map: this.props.map }),
-      _react2.default.createElement(_bar2.default, null)
+      _react2.default.createElement('div', { ref: 'googleMap' }),
+      _react2.default.createElement(Yo, { map: this.props.map })
     );
   }
 });

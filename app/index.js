@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import hbs from 'express-handlebars';
 import React from 'react';
-import browserify from 'browserify';
 import Root from './components/root';
 import db from '../models'
 const app = express();
@@ -33,15 +32,17 @@ app.engine('html', hbs({ extname: 'html' }));
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: false}))
 
 
 app.get('/', (req, res) => {
   db.map.find({where: {id: 1 }}).then( (map) => {
-  res.render('index', { 
-    reactHtml: React.renderToString(<Root map={map} />)
-    });
+    res.render('index', {map: map})
   })
 });
 

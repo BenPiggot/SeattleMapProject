@@ -1,6 +1,4 @@
 import React from 'react';
-import Bar from '../components/bar';
-import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 const Yo = React.createClass({
   render() {
@@ -9,7 +7,6 @@ const Yo = React.createClass({
 })
 
 export default React.createClass({
-
    initialize() {
     const mapProp = {
       center: new google.maps.LatLng(31.648498, -40),
@@ -35,8 +32,7 @@ export default React.createClass({
     return <div>
         <div>Hello Ben, {this.props.map.topic} </div>
         <div ref="googleMap"></div>
-        <Yo map={this.props.map} />
-        <Bar />
+        <Yo map={this.props.map}/>
       </div>
     }
 });
