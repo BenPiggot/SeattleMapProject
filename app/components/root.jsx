@@ -1,12 +1,6 @@
 import React from 'react';
-import Bar from '../components/bar';
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
-const Yo = React.createClass({
-  render() {
-    return <div> {this.props.map.topic} uses {this.props.map.theme} as a theme </div>
-  }
-})
 
 export default React.createClass({
 
@@ -33,10 +27,8 @@ export default React.createClass({
 
   render() {
     return <div>
-        <div>Hello Ben, {this.props.map.topic} </div>
-        <div ref="googleMap"></div>
-        <Yo map={this.props.map} />
-        <Bar />
+        <div>Hello Ben</div>
+        <div style={{height: '500px'}} ref="googleMap"></div>
       </div>
     }
 });
