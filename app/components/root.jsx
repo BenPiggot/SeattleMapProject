@@ -27,8 +27,27 @@ export default React.createClass({
 
   render() {
     return <div>
-        <div>Hello Ben</div>
-        <div style={{height: '500px'}} ref="googleMap"></div>
+        <div style={{height: '1000px'}} className="googleMap" ref="googleMap"></div>
+          <div id="target" className="innerHeader">
+          <div id="mobile-wrapper">
+            <h1>Seattle Backstory</h1>
+            <p id="subhead">All the History that is fit to Map</p>
+          </div>
+         <footer id="vanishLater">
+           <nav id="eventSearch">
+            <ul id="category">
+              <li id="culture"><a>Culture</a></li>
+              <li id="civil-rights"><a>Civil Rights</a></li>
+              <li id="commerce"><a>Commerce</a></li>
+              <li id="environment"><a>Environment</a></li>
+              <li id="social-policy"><a>Social Policy</a></li>
+              <li id="technology"><a>Technology</a></li>
+            </ul>
+          </nav>
+        </footer>
+        </div>
+        <div id="title"></div>
+        <div id="over_map"></div>
       </div>
     }
 });

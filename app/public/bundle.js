@@ -24985,12 +24985,93 @@
 	    return _react2.default.createElement(
 	      'div',
 	      null,
+	      _react2.default.createElement('div', { style: { height: '1000px' }, className: 'googleMap', ref: 'googleMap' }),
 	      _react2.default.createElement(
 	        'div',
-	        null,
-	        'Hello Ben'
+	        { id: 'target', className: 'innerHeader' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'mobile-wrapper' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Seattle Backstory'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'subhead' },
+	            'All the History that is fit to Map'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'footer',
+	          { id: 'vanishLater' },
+	          _react2.default.createElement(
+	            'nav',
+	            { id: 'eventSearch' },
+	            _react2.default.createElement(
+	              'ul',
+	              { id: 'category' },
+	              _react2.default.createElement(
+	                'li',
+	                { id: 'culture' },
+	                _react2.default.createElement(
+	                  'a',
+	                  null,
+	                  'Culture'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { id: 'civil-rights' },
+	                _react2.default.createElement(
+	                  'a',
+	                  null,
+	                  'Civil Rights'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { id: 'commerce' },
+	                _react2.default.createElement(
+	                  'a',
+	                  null,
+	                  'Commerce'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { id: 'environment' },
+	                _react2.default.createElement(
+	                  'a',
+	                  null,
+	                  'Environment'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { id: 'social-policy' },
+	                _react2.default.createElement(
+	                  'a',
+	                  null,
+	                  'Social Policy'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'li',
+	                { id: 'technology' },
+	                _react2.default.createElement(
+	                  'a',
+	                  null,
+	                  'Technology'
+	                )
+	              )
+	            )
+	          )
+	        )
 	      ),
-	      _react2.default.createElement('div', { style: { height: '500px' }, ref: 'googleMap' })
+	      _react2.default.createElement('div', { id: 'title' }),
+	      _react2.default.createElement('div', { id: 'over_map' })
 	    );
 	  }
 	});
