@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 
 app.get('/', (req, res) => {
+  console.log(req.headers)
   db.map.find({where: {id: 1 }}).then( (map) => {
     res.render('index', { 
       reactHtml: React.renderToString(<Root map={map} />)

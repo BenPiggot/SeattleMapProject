@@ -4,6 +4,18 @@ import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 export default React.createClass({
 
+  getInitialState() {
+    return {
+      height: '790px'
+    }
+  },
+
+  getViewport() {
+    this.setState({
+      height: window.innerHeight + 100
+    })
+  },
+
    initialize() {
     const mapProp = {
       center: new google.maps.LatLng(31.648498, -40),
@@ -20,14 +32,13 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    debugger
-    console.log('yooooo')
     google.maps.event.addDomListener(window, 'load', this.initialize);
+    this.getViewport()
   },
 
   render() {
     return <div>
-        <div style={{height: '1000px'}} className="googleMap" ref="googleMap"></div>
+        <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
           <div id="target" className="innerHeader">
           <div id="mobile-wrapper">
             <h1>Seattle Backstory</h1>
@@ -46,8 +57,8 @@ export default React.createClass({
           </nav>
         </footer>
         </div>
-        <div id="title"></div>
-        <div id="over_map"></div>
+        <div className="title"></div>
+        <div className="over_map"></div>
       </div>
     }
 });

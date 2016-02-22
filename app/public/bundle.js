@@ -24962,6 +24962,16 @@
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'root',
+	  getInitialState: function getInitialState() {
+	    return {
+	      height: '790px'
+	    };
+	  },
+	  getViewport: function getViewport() {
+	    this.setState({
+	      height: window.innerHeight + 100
+	    });
+	  },
 	  initialize: function initialize() {
 	    var mapProp = {
 	      center: new google.maps.LatLng(31.648498, -40),
@@ -24977,15 +24987,14 @@
 	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
 	  },
 	  componentDidMount: function componentDidMount() {
-	    debugger;
-	    console.log('yooooo');
 	    google.maps.event.addDomListener(window, 'load', this.initialize);
+	    this.getViewport();
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      _react2.default.createElement('div', { style: { height: '1000px' }, className: 'googleMap', ref: 'googleMap' }),
+	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
 	      _react2.default.createElement(
 	        'div',
 	        { id: 'target', className: 'innerHeader' },
@@ -25070,8 +25079,8 @@
 	          )
 	        )
 	      ),
-	      _react2.default.createElement('div', { id: 'title' }),
-	      _react2.default.createElement('div', { id: 'over_map' })
+	      _react2.default.createElement('div', { className: 'title' }),
+	      _react2.default.createElement('div', { className: 'over_map' })
 	    );
 	  }
 	});
