@@ -24989,6 +24989,7 @@
 	  componentDidMount: function componentDidMount() {
 	    google.maps.event.addDomListener(window, 'load', this.initialize);
 	    this.getViewport();
+	    window.addEventListener("resize", this.getViewport);
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
