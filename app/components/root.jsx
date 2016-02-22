@@ -35,6 +35,9 @@ export default React.createClass({
     google.maps.event.addDomListener(window, 'load', this.initialize);
     this.getViewport()
     window.addEventListener("resize", this.getViewport);
+    $.get('/data', (data) => {
+      console.log(data)
+    })
   },
 
   componentWillUnmount() {

@@ -28,6 +28,13 @@ app.get('/', (req, res) => {
   });
 });
 
+
+app.get('/data', (req, res) => {
+  db.map.findAll().then( (map) => {
+    res.send({result: map})
+  })
+})
+
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server started ...")
 })
