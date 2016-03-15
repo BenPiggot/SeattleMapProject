@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/data', (req, res) => {
-  db.map.findAll().then( (map) => {
+  db.location.findAll().then( (map) => {
     res.send({result: map})
   })
 })
