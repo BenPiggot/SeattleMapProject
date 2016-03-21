@@ -33,13 +33,20 @@ export default React.createClass({
      const map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
 
      $.get('/data/culture', (data) => {
-      console.log(data)
       data.result.forEach( (r) => {
-        new google.maps.Marker({
+        let infowindow = new google.maps.InfoWindow({});
+        let marker = new google.maps.Marker({
           position: {lat: r.latitude, lng: r.longitude},
           map: map,
           icon: './images/greypin.png'
         });
+        google.maps.event.addListener(marker, 'click', () => {
+          infowindow.close()
+          infowindow = new google.maps.InfoWindow({
+            content: r.description
+          });
+          infowindow.open(map, marker);
+        })
       })
     })
   },

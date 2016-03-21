@@ -34,11 +34,19 @@ export default React.createClass({
 
      $.get('/data/civil-rights', (data) => {
       data.result.forEach( (r) => {
-        new google.maps.Marker({
+        let infowindow = new google.maps.InfoWindow({});
+        let marker = new google.maps.Marker({
           position: {lat: r.latitude, lng: r.longitude},
           map: map,
           icon: './images/greypin.png'
         });
+        google.maps.event.addListener(marker, 'click', () => {
+          infowindow.close()
+          infowindow = new google.maps.InfoWindow({
+            content: r.description
+          });
+          infowindow.open(map, marker);
+        })
       })
     })
   },
