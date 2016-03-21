@@ -20,16 +20,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: false}))
 
 
-db.location.update(
-  {
-    latitude: 47.6033271,
-    longitude: -122.3264308
-  },
-  {
-    where: { id : 15 }
-  }).then( (map) => console.log(map))
-
-
 app.get('/', (req, res) => {
   db.map.find({where: {id: 1 }}).then( (map) => {
     res.render('index', { 

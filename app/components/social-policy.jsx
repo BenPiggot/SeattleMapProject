@@ -32,7 +32,6 @@ export default React.createClass({
      const map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
 
      $.get('/data/social-policy', (data) => {
-      console.log(data)
       data.result.forEach( (r) => {
         let infowindow = new google.maps.InfoWindow({});
         let marker = new google.maps.Marker({
