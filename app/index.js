@@ -35,6 +35,29 @@ app.get('/data', (req, res) => {
   })
 })
 
+app.get('/data/culture', (req, res) => {
+  db.location.findAll({
+    include: [{
+      model: db.map,
+      where: { topic: 'Culture' }
+    }]
+  }).then( (map) => {
+    res.send({result: map})
+  })
+})
+
+app.get('/data/civil-rights', (req, res) => {
+  db.location.findAll({
+    include: [{
+      model: db.map,
+      where: { topic: 'Civil Rights' }
+    }]
+  }).then( (map) => {
+    res.send({result: map})
+  })
+})
+
+
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server started ...")
 })

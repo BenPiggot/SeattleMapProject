@@ -24960,6 +24960,10 @@
 
 	var _culture2 = _interopRequireDefault(_culture);
 
+	var _civilRights = __webpack_require__(219);
+
+	var _civilRights2 = _interopRequireDefault(_civilRights);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
@@ -24976,6 +24980,10 @@
 	    });
 	  },
 	  initialize: function initialize() {
+	    this.setState({
+	      subject: ''
+	    });
+
 	    var shiftWorker = [{ "stylers": [{ "saturation": -100 }, { "gamma": 0.6 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.business", "elementType": "labels.text", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.business", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.place_of_worship", "elementType": "labels.text", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.place_of_worship", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "water", "stylers": [{ "visibility": "on" }, { "saturation": 50 }, { "gamma": 0 }, { "hue": "#50a5d1" }] }, { "featureType": "administrative.neighborhood", "elementType": "labels.text.fill", "stylers": [{ "color": "#333333" }] }, { "featureType": "road.local", "elementType": "labels.text", "stylers": [{ "weight": 0.5 }, { "color": "#333333" }] }, { "featureType": "transit.station", "elementType": "labels.icon", "stylers": [{ "gamma": 1 }, { "saturation": 50 }] }];
 	    var mapProp = {
 	      center: new google.maps.LatLng(47.6097, -122.3331),
@@ -24987,10 +24995,9 @@
 	      streetViewControl: false,
 	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
 	      styles: shiftWorker
-
 	    };
 
-	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
+	    var map = this.refs.googleMap ? new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp) : new google.maps.Map(document.getElementsByClassName('googleMap')[0], mapProp);
 
 	    $.get('/data', function (data) {
 	      data.result.forEach(function (r) {
@@ -25003,12 +25010,15 @@
 	    });
 	  },
 	  componentDidMount: function componentDidMount() {
-	    google.maps.event.addDomListener(window, 'load', this.initialize);
+	    this.initialize();
 	    this.getViewport();
 	    window.addEventListener("resize", this.getViewport);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    window.removeEventListener("resize", this.getViewport);
+	  },
+	  refreshPage: function refreshPage() {
+	    window.location.reload();
 	  },
 	  handleClick: function handleClick(e) {
 	    this.setState({
@@ -25016,12 +25026,11 @@
 	    });
 	  },
 	  render: function render() {
-	    if (this.state.subject == 'Culture') {
-	      return _react2.default.createElement(_culture2.default, null);
-	    } else {
+	    if (this.state.subject == 'Culture') return _react2.default.createElement(_culture2.default, { key: this.state.subject, refreshPage: this.refreshPage });
+	    if (this.state.subject == 'Civil Rights') return _react2.default.createElement(_civilRights2.default, { key: this.state.subject, refreshPage: this.refreshPage });else {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { key: this.state.subject },
 	        _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
 	        _react2.default.createElement(
 	          'div',
@@ -25159,7 +25168,8 @@
 
 	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
 
-	    $.get('/data', function (data) {
+	    $.get('/data/culture', function (data) {
+	      console.log(data);
 	      data.result.forEach(function (r) {
 	        new google.maps.Marker({
 	          position: { lat: r.latitude, lng: r.longitude },
@@ -25177,7 +25187,10 @@
 	  componentWillUnmount: function componentWillUnmount() {
 	    window.removeEventListener("resize", this.getViewport);
 	  },
-	  handleClick: function handleClick(e) {},
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
+	    this.props.refreshPage();
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -25196,7 +25209,106 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        _react2.default.createElement('div', { className: 'over_map' })
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.handleClick, className: 'return' },
+	          'MAIN MENU'
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'civil-rights',
+	  getInitialState: function getInitialState() {
+	    return {
+	      height: '790px'
+	    };
+	  },
+	  getViewport: function getViewport() {
+	    this.setState({
+	      height: window.innerHeight + 100
+	    });
+	  },
+	  initialize: function initialize() {
+	    var paleDawn = [{ "featureType": "administrative", "elementType": "all", "stylers": [{ "visibility": "on" }, { "lightness": 33 }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2e5d4" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#c5dac6" }] }, { "featureType": "poi.park", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 20 }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#c5c6c6" }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#e4d7c6" }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#fbfaf7" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "visibility": "on" }, { "color": "#acbcc9" }] }];
+	    var mapProp = {
+	      center: new google.maps.LatLng(47.6097, -122.3331),
+	      zoom: 12,
+	      scrollwheel: false,
+	      panControl: false,
+	      zoomControl: true,
+	      scaleControl: false,
+	      streetViewControl: false,
+	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
+	      styles: paleDawn
+
+	    };
+
+	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
+
+	    $.get('/data/civil-rights', function (data) {
+	      data.result.forEach(function (r) {
+	        new google.maps.Marker({
+	          position: { lat: r.latitude, lng: r.longitude },
+	          map: map,
+	          icon: './images/greypin.png'
+	        });
+	      });
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.initialize();
+	    this.getViewport();
+	    window.addEventListener("resize", this.getViewport);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    window.removeEventListener("resize", this.getViewport);
+	  },
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
+	    this.props.refreshPage();
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'target' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'mobile-wrapper' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Civil Rights History'
+	          )
+	        ),
+	        _react2.default.createElement('div', { className: 'title' }),
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.handleClick, className: 'return' },
+	          'MAIN MENU'
+	        )
 	      )
 	    );
 	  }

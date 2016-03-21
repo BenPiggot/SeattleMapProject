@@ -1,5 +1,6 @@
 import React from 'react';
-import Culture from './culture.jsx'
+import Culture from './culture.jsx';
+import CivilRights from './civil-rights.jsx';
 
 
 export default React.createClass({
@@ -18,6 +19,10 @@ export default React.createClass({
   },
 
    initialize() {
+    this.setState({
+      subject: ''
+    })
+
     const shiftWorker = [{"stylers":[{"saturation":-100},{"gamma":0.6}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"saturation":50},{"gamma":0},{"hue":"#50a5d1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"color":"#333333"}]},{"featureType":"road.local","elementType":"labels.text","stylers":[{"weight":0.5},{"color":"#333333"}]},{"featureType":"transit.station","elementType":"labels.icon","stylers":[{"gamma":1},{"saturation":50}]}]
     const mapProp = {
       center: new google.maps.LatLng(47.6097, -122.3331),
@@ -29,10 +34,11 @@ export default React.createClass({
       streetViewControl: false,
       mapTypeclassName: google.maps.MapTypeId.ROADMAP,
       styles: shiftWorker
-
     };
 
-     const map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
+    const map = this.refs.googleMap ?
+                new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp) :
+                new google.maps.Map(document.getElementsByClassName('googleMap')[0], mapProp)
 
      $.get('/data', (data) => {
       data.result.forEach( (r) => {
@@ -46,13 +52,17 @@ export default React.createClass({
   },
 
   componentDidMount() {
-    google.maps.event.addDomListener(window, 'load', this.initialize);
+    this.initialize()
     this.getViewport()
     window.addEventListener("resize", this.getViewport);
   },
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.getViewport);
+  },
+
+  refreshPage() {
+    window.location.reload()
   },
 
   handleClick(e) {
@@ -62,10 +72,12 @@ export default React.createClass({
   },
 
   render() {
-    if (this.state.subject == 'Culture') {
-      return <Culture />
-    } else {
-      return <div>
+    if (this.state.subject == 'Culture') 
+      return <Culture key={this.state.subject} refreshPage={this.refreshPage} />
+    if (this.state.subject == 'Civil Rights')
+      return <CivilRights key={this.state.subject} refreshPage={this.refreshPage} />
+    else {
+      return <div key={this.state.subject}>
           <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
             <div id="target" className="innerHeader">
             <div id="mobile-wrapper">
