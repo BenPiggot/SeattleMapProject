@@ -1,12 +1,13 @@
 import React from 'react';
-import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+import Culture from './culture.jsx'
 
 
 export default React.createClass({
 
   getInitialState() {
     return {
-      height: '790px'
+      height: '790px',
+      subject: ''
     }
   },
 
@@ -26,7 +27,7 @@ export default React.createClass({
       zoomControl: true,
       scaleControl: false,
       streetViewControl: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
       styles: shiftWorker
 
     };
@@ -54,29 +55,39 @@ export default React.createClass({
     window.removeEventListener("resize", this.getViewport);
   },
 
+  handleClick(e) {
+    this.setState({
+      subject: e.target.lastChild.textContent
+    })
+  },
+
   render() {
-    return <div>
-        <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
-          <div id="target" className="innerHeader">
-          <div id="mobile-wrapper">
-            <h1>Seattle Backstory</h1>
-            <p id="subhead">All the History that is fit to Map</p>
+    if (this.state.subject == 'Culture') {
+      return <Culture />
+    } else {
+      return <div>
+          <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
+            <div id="target" className="innerHeader">
+            <div id="mobile-wrapper">
+              <h1>Seattle Backstory</h1>
+              <p id="subhead">All the History that is fit to Map</p>
+            </div>
+           <footer id="vanishLater">
+             <nav id="eventSearch">
+              <ul id="category">
+                <li onClick={this.handleClick} id="culture"><a>Culture</a></li>
+                <li onClick={this.handleClick} id="civil-rights"><a>Civil Rights</a></li>
+                <li onClick={this.handleClick} id="commerce"><a>Commerce</a></li>
+                <li onClick={this.handleClick} id="environment"><a>Environment</a></li>
+                <li onClick={this.handleClick} id="social-policy"><a>Social Policy</a></li>
+                <li onClick={this.handleClick} id="technology"><a>Technology</a></li>
+              </ul>
+            </nav>
+          </footer>
           </div>
-         <footer id="vanishLater">
-           <nav id="eventSearch">
-            <ul id="category">
-              <li id="culture"><a>Culture</a></li>
-              <li id="civil-rights"><a>Civil Rights</a></li>
-              <li id="commerce"><a>Commerce</a></li>
-              <li id="environment"><a>Environment</a></li>
-              <li id="social-policy"><a>Social Policy</a></li>
-              <li id="technology"><a>Technology</a></li>
-            </ul>
-          </nav>
-        </footer>
+          <div className="title"></div>
+          <div className="over_map"></div>
         </div>
-        <div className="title"></div>
-        <div className="over_map"></div>
-      </div>
+      }
     }
 });
