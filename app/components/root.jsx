@@ -1,6 +1,10 @@
 import React from 'react';
 import Culture from './culture.jsx';
 import CivilRights from './civil-rights.jsx';
+import Commerce from './commerce.jsx';
+import Environment from './environment.jsx';
+import SocialPolicy from './social-policy.jsx';
+import Technology from './technology.jsx';
 
 
 export default React.createClass({
@@ -70,8 +74,16 @@ export default React.createClass({
   render() {
     if (this.state.subject == 'Culture') 
       return <Culture key={this.state.subject} refreshPage={this.refreshPage} />
-    if (this.state.subject == 'Civil Rights')
+    else if (this.state.subject == 'Civil Rights')
       return <CivilRights key={this.state.subject} refreshPage={this.refreshPage} />
+    else if (this.state.subject == 'Commerce')
+      return <Commerce key={this.state.subject} refreshPage={this.refreshPage} />
+    else if (this.state.subject == 'Environment')
+      return <Environment key={this.state.subject} refreshPage={this.refreshPage} />
+    else if (this.state.subject == 'Social Policy')
+      return <SocialPolicy key={this.state.subject} refreshPage={this.refreshPage} />
+    else if (this.state.subject == 'Technology')
+      return <Technology key={this.state.subject} refreshPage={this.refreshPage} />
     else {
       return <div key={this.state.subject}>
           <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>

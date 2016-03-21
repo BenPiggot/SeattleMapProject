@@ -15,7 +15,7 @@ export default React.createClass({
   },
 
    initialize() {
-    const paleDawn = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+    const subtleGrayscale = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"on"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
     const mapProp = {
       center: new google.maps.LatLng(47.6097, -122.3331),
       zoom: 12,
@@ -25,13 +25,14 @@ export default React.createClass({
       scaleControl: false,
       streetViewControl: false,
       mapTypeclassName: google.maps.MapTypeId.ROADMAP,
-      styles: paleDawn
+      styles: subtleGrayscale
 
     };
 
      const map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
 
-     $.get('/data/civil-rights', (data) => {
+     $.get('/data/social-policy', (data) => {
+      console.log(data)
       data.result.forEach( (r) => {
         let infowindow = new google.maps.InfoWindow({});
         let marker = new google.maps.Marker({
@@ -70,7 +71,7 @@ export default React.createClass({
       <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
         <div id="target">
           <div id="mobile-wrapper">
-            <h1>Civil Rights History</h1>
+            <h1>Social History</h1>
           </div>
           <div className="title"></div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>

@@ -15,7 +15,7 @@ export default React.createClass({
   },
 
    initialize() {
-    const paleDawn = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+    const nature = [{"featureType":"landscape","stylers":[{"hue":"#FFA800"},{"saturation":0},{"lightness":0},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#53FF00"},{"saturation":-73},{"lightness":40},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FBFF00"},{"saturation":0},{"lightness":0},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#00FFFD"},{"saturation":0},{"lightness":30},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#00BFFF"},{"saturation":6},{"lightness":8},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#679714"},{"saturation":33.4},{"lightness":-25.4},{"gamma":1}]}]
     const mapProp = {
       center: new google.maps.LatLng(47.6097, -122.3331),
       zoom: 12,
@@ -25,13 +25,13 @@ export default React.createClass({
       scaleControl: false,
       streetViewControl: false,
       mapTypeclassName: google.maps.MapTypeId.ROADMAP,
-      styles: paleDawn
+      styles: nature
 
     };
 
      const map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
 
-     $.get('/data/civil-rights', (data) => {
+     $.get('/data/environment', (data) => {
       data.result.forEach( (r) => {
         let infowindow = new google.maps.InfoWindow({});
         let marker = new google.maps.Marker({
@@ -70,7 +70,7 @@ export default React.createClass({
       <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
         <div id="target">
           <div id="mobile-wrapper">
-            <h1>Civil Rights History</h1>
+            <h1>Environmental History</h1>
           </div>
           <div className="title"></div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>

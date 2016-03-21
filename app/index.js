@@ -20,6 +20,16 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: false}))
 
 
+db.location.update(
+  {
+    latitude: 47.6033271,
+    longitude: -122.3264308
+  },
+  {
+    where: { id : 15 }
+  }).then( (map) => console.log(map))
+
+
 app.get('/', (req, res) => {
   db.map.find({where: {id: 1 }}).then( (map) => {
     res.render('index', { 
@@ -27,7 +37,6 @@ app.get('/', (req, res) => {
     });
   });
 });
-
 
 app.get('/data', (req, res) => {
   db.location.findAll().then( (map) => {
@@ -51,6 +60,50 @@ app.get('/data/civil-rights', (req, res) => {
     include: [{
       model: db.map,
       where: { topic: 'Civil Rights' }
+    }]
+  }).then( (map) => {
+    res.send({result: map})
+  })
+})
+
+app.get('/data/commerce', (req, res) => {
+  db.location.findAll({
+    include: [{
+      model: db.map,
+      where: { topic: 'Commerce' }
+    }]
+  }).then( (map) => {
+    res.send({result: map})
+  })
+})
+
+app.get('/data/environment', (req, res) => {
+  db.location.findAll({
+    include: [{
+      model: db.map,
+      where: { topic: 'Environment' }
+    }]
+  }).then( (map) => {
+    res.send({result: map})
+  })
+})
+
+app.get('/data/social-policy', (req, res) => {
+  db.location.findAll({
+    include: [{
+      model: db.map,
+      where: { topic: 'Social Policy' }
+    }]
+  }).then( (map) => {
+    res.send({result: map})
+  })
+})
+
+app.get('/data/technology', (req, res) => {
+  db.location.findAll({
+    include: [{
+      model: db.map,
+      where: { topic: 'Technology' }
     }]
   }).then( (map) => {
     res.send({result: map})
