@@ -25197,9 +25197,11 @@
 	            content: r.description
 	          });
 
+	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+
 	          infowindow.open(map, marker);
 
-	          var node = $('.googleMap > div > div > div+div > div > div')[0];
+	          var node = $('.gm-style > div > div+div > div > div')[0];
 
 	          setTimeout(function () {
 	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
@@ -25311,9 +25313,11 @@
 	            content: r.description
 	          });
 
+	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+
 	          infowindow.open(map, marker);
 
-	          var node = $('.googleMap > div > div > div+div > div > div')[0];
+	          var node = $('.gm-style > div > div+div > div > div')[0];
 
 	          setTimeout(function () {
 	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
@@ -25425,9 +25429,11 @@
 	            content: r.description
 	          });
 
+	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+
 	          infowindow.open(map, marker);
 
-	          var node = $('.googleMap > div > div > div+div > div > div')[0];
+	          var node = $('.gm-style > div > div+div > div > div')[0];
 
 	          setTimeout(function () {
 	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
@@ -25539,9 +25545,11 @@
 	            content: r.description
 	          });
 
+	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+
 	          infowindow.open(map, marker);
 
-	          var node = $('.googleMap > div > div > div+div > div > div')[0];
+	          var node = $('.gm-style > div > div+div > div > div')[0];
 
 	          setTimeout(function () {
 	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
@@ -25653,9 +25661,11 @@
 	            content: r.description
 	          });
 
+	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+
 	          infowindow.open(map, marker);
 
-	          var node = $('.googleMap > div > div > div+div > div > div')[0];
+	          var node = $('.gm-style > div > div+div > div > div')[0];
 
 	          setTimeout(function () {
 	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
@@ -25766,9 +25776,11 @@
 	            content: r.description
 	          });
 
+	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+
 	          infowindow.open(map, marker);
 
-	          var node = $('.googleMap > div > div > div+div > div > div')[0];
+	          var node = $('.gm-style > div > div+div > div > div')[0];
 
 	          setTimeout(function () {
 	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);

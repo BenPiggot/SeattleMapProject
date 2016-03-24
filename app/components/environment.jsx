@@ -42,15 +42,17 @@ export default React.createClass({
           map: map,
           icon: './images/greypin.png'
         });
-        
+
         google.maps.event.addListener(marker, 'click', () => {
           let infowindow = new google.maps.InfoWindow({
             content: r.description
           });
 
+          $($('.gm-style > div > div+div > div > div')[0]).remove()
+
           infowindow.open(map, marker);
 
-          const node = $('.googleMap > div > div > div+div > div > div')[0]
+          const node = $('.gm-style > div > div+div > div > div')[0]
 
           setTimeout( () => {
             if (screen.width >= 600 && (this.getViewportOffset(node)) > 600) 
