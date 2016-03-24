@@ -186,11 +186,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 // getViewportOffset function to resize screen when infoWindows display
 
- function getViewportOffset($e) {
-  var $window = $(window),
-    windowHeight = $window.innerHeight();
-    offset = $e.offset();
-    return windowHeight - offset.top
+function getViewportOffset($e) {
+  var $window = $(window)
+  windowHeight = $window.innerHeight();
+  offset = $e.offset();
+  return windowHeight - offset.top
 };
 
 //add event listeners to highlight map category - content for info window's is drawn from info.js file

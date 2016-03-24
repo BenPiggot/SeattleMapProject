@@ -14,6 +14,11 @@ export default React.createClass({
     })
   },
 
+  getViewportOffset(node) {
+    const windowHeight = window.innerHeight;
+    return windowHeight - node.offsetTop
+  },
+
    initialize() {
     const mint = [{"stylers":[{"hue":"#16a085"},{"saturation":0}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]}]
     const mapProp = {
@@ -32,18 +37,24 @@ export default React.createClass({
 
      $.get('/data/technology', (data) => {
       data.result.forEach( (r) => {
-        let infowindow = new google.maps.InfoWindow({});
         let marker = new google.maps.Marker({
           position: {lat: r.latitude, lng: r.longitude},
           map: map,
           icon: './images/greypin.png'
         });
         google.maps.event.addListener(marker, 'click', () => {
-          infowindow.close()
-          infowindow = new google.maps.InfoWindow({
+          let infowindow = new google.maps.InfoWindow({
             content: r.description
           });
+
           infowindow.open(map, marker);
+
+          const node = $('.googleMap > div > div > div+div > div > div')[0]
+
+          setTimeout( () => {
+            if (screen.width >= 600 && (this.getViewportOffset(node)) > 600) 
+              map.panBy(0, -110);
+          }, 600);
         })
       })
     })

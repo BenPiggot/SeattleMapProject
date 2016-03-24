@@ -14,6 +14,11 @@ export default React.createClass({
     })
   },
 
+  getViewportOffset(node) {
+    const windowHeight = window.innerHeight;
+    return windowHeight - node.offsetTop
+  },
+
    initialize() {
     const subtleGrayscale = [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"on"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
     const mapProp = {
@@ -33,18 +38,24 @@ export default React.createClass({
 
      $.get('/data/social-policy', (data) => {
       data.result.forEach( (r) => {
-        let infowindow = new google.maps.InfoWindow({});
         let marker = new google.maps.Marker({
           position: {lat: r.latitude, lng: r.longitude},
           map: map,
           icon: './images/greypin.png'
         });
         google.maps.event.addListener(marker, 'click', () => {
-          infowindow.close()
-          infowindow = new google.maps.InfoWindow({
+          let infowindow = new google.maps.InfoWindow({
             content: r.description
           });
+
           infowindow.open(map, marker);
+
+          const node = $('.googleMap > div > div > div+div > div > div')[0]
+
+          setTimeout( () => {
+            if (screen.width >= 600 && (this.getViewportOffset(node)) > 600) 
+              map.panBy(0, -110);
+          }, 600);
         })
       })
     })
