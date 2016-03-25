@@ -5,14 +5,14 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      height: '790px'
+      height: '790px',
+      showForm: false
     }
   },
 
   getViewport() {
     this.setState({
-      height: window.innerHeight + 100,
-      showForm: false
+      height: window.innerHeight + 100
     })
   },
 
@@ -50,7 +50,8 @@ export default React.createClass({
             content: r.description
           });
 
-          $($('.gm-style > div > div+div > div > div')[0]).remove()
+          if ($('.gm-style > div > div+div > div > div').length > 1)
+            $($('.gm-style > div > div+div > div > div')[0]).remove()
 
           infowindow.open(map, marker);
 

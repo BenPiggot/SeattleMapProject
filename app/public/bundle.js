@@ -24960,15 +24960,15 @@
 
 	var _culture2 = _interopRequireDefault(_culture);
 
-	var _civilRights = __webpack_require__(219);
+	var _civilRights = __webpack_require__(227);
 
 	var _civilRights2 = _interopRequireDefault(_civilRights);
 
-	var _commerce = __webpack_require__(220);
+	var _commerce = __webpack_require__(228);
 
 	var _commerce2 = _interopRequireDefault(_commerce);
 
-	var _environment = __webpack_require__(221);
+	var _environment = __webpack_require__(229);
 
 	var _environment2 = _interopRequireDefault(_environment);
 
@@ -25148,13 +25148,18 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _newMarker = __webpack_require__(219);
+
+	var _newMarker2 = _interopRequireDefault(_newMarker);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'culture',
 	  getInitialState: function getInitialState() {
 	    return {
-	      height: '790px'
+	      height: '790px',
+	      showForm: false
 	    };
 	  },
 	  getViewport: function getViewport() {
@@ -25197,360 +25202,7 @@
 	            content: r.description
 	          });
 
-	          $($('.gm-style > div > div+div > div > div')[0]).remove();
-
-	          infowindow.open(map, marker);
-
-	          var node = $('.gm-style > div > div+div > div > div')[0];
-
-	          setTimeout(function () {
-	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
-	          }, 600);
-	        });
-	      });
-	    });
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.initialize();
-	    this.getViewport();
-	    window.addEventListener("resize", this.getViewport);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    window.removeEventListener("resize", this.getViewport);
-	  },
-	  handleClick: function handleClick(e) {
-	    e.preventDefault();
-	    this.props.refreshPage();
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'target' },
-	        _react2.default.createElement(
-	          'div',
-	          { id: 'mobile-wrapper' },
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Cultural History'
-	          )
-	        ),
-	        _react2.default.createElement('div', { className: 'title' }),
-	        _react2.default.createElement(
-	          'div',
-	          { onClick: this.handleClick, className: 'return' },
-	          'MAIN MENU'
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: 'civil-rights',
-	  getInitialState: function getInitialState() {
-	    return {
-	      height: '790px'
-	    };
-	  },
-	  getViewport: function getViewport() {
-	    this.setState({
-	      height: window.innerHeight + 100
-	    });
-	  },
-	  getViewportOffset: function getViewportOffset(node) {
-	    var windowHeight = window.innerHeight;
-	    return windowHeight - node.offsetTop;
-	  },
-	  initialize: function initialize() {
-	    var _this = this;
-
-	    var paleDawn = [{ "featureType": "administrative", "elementType": "all", "stylers": [{ "visibility": "on" }, { "lightness": 33 }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2e5d4" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#c5dac6" }] }, { "featureType": "poi.park", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 20 }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#c5c6c6" }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#e4d7c6" }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#fbfaf7" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "visibility": "on" }, { "color": "#acbcc9" }] }];
-	    var mapProp = {
-	      center: new google.maps.LatLng(47.6097, -122.3331),
-	      zoom: 12,
-	      scrollwheel: false,
-	      panControl: false,
-	      zoomControl: true,
-	      scaleControl: false,
-	      streetViewControl: false,
-	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
-	      styles: paleDawn
-
-	    };
-
-	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
-
-	    $.get('/data/civil-rights', function (data) {
-	      data.result.forEach(function (r) {
-	        var marker = new google.maps.Marker({
-	          position: { lat: r.latitude, lng: r.longitude },
-	          map: map,
-	          icon: './images/greypin.png'
-	        });
-	        google.maps.event.addListener(marker, 'click', function () {
-	          var infowindow = new google.maps.InfoWindow({
-	            content: r.description
-	          });
-
-	          $($('.gm-style > div > div+div > div > div')[0]).remove();
-
-	          infowindow.open(map, marker);
-
-	          var node = $('.gm-style > div > div+div > div > div')[0];
-
-	          setTimeout(function () {
-	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
-	          }, 600);
-	        });
-	      });
-	    });
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.initialize();
-	    this.getViewport();
-	    window.addEventListener("resize", this.getViewport);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    window.removeEventListener("resize", this.getViewport);
-	  },
-	  handleClick: function handleClick(e) {
-	    e.preventDefault();
-	    this.props.refreshPage();
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'target' },
-	        _react2.default.createElement(
-	          'div',
-	          { id: 'mobile-wrapper' },
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Civil Rights History'
-	          )
-	        ),
-	        _react2.default.createElement('div', { className: 'title' }),
-	        _react2.default.createElement(
-	          'div',
-	          { onClick: this.handleClick, className: 'return' },
-	          'MAIN MENU'
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 220 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: 'commerce',
-	  getInitialState: function getInitialState() {
-	    return {
-	      height: '790px'
-	    };
-	  },
-	  getViewport: function getViewport() {
-	    this.setState({
-	      height: window.innerHeight + 100
-	    });
-	  },
-	  getViewportOffset: function getViewportOffset(node) {
-	    var windowHeight = window.innerHeight;
-	    return windowHeight - node.offsetTop;
-	  },
-	  initialize: function initialize() {
-	    var _this = this;
-
-	    var mostlyGray = [{ "featureType": "administrative", "elementType": "all", "stylers": [{ "visibility": "on" }, { "lightness": 33 }] }, { "featureType": "administrative", "elementType": "labels", "stylers": [{ "saturation": "-100" }] }, { "featureType": "administrative", "elementType": "labels.text", "stylers": [{ "gamma": "0.75" }] }, { "featureType": "administrative.neighborhood", "elementType": "labels.text.fill", "stylers": [{ "lightness": "-37" }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2e5d4" }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "saturation": "-100" }, { "lightness": "100" }] }, { "featureType": "landscape.natural", "elementType": "labels.text.fill", "stylers": [{ "saturation": "-100" }, { "lightness": "-37" }] }, { "featureType": "landscape.natural", "elementType": "labels.text.stroke", "stylers": [{ "saturation": "-100" }, { "lightness": "100" }, { "weight": "2" }] }, { "featureType": "landscape.natural", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "saturation": "-100" }, { "lightness": "80" }] }, { "featureType": "poi", "elementType": "labels.text", "stylers": [{ "saturation": "-100" }, { "lightness": "15" }] }, { "featureType": "poi", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }] }, { "featureType": "poi.attraction", "elementType": "geometry", "stylers": [{ "lightness": "40" }, { "visibility": "off" }] }, { "featureType": "poi.attraction", "elementType": "labels.text", "stylers": [{ "saturation": "7" }, { "gamma": "0.50" }] }, { "featureType": "poi.attraction", "elementType": "labels.icon", "stylers": [{ "saturation": "0" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#c5dac6" }, { "visibility": "on" }, { "saturation": "-95" }, { "lightness": "62" }] }, { "featureType": "poi.park", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 20 }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "lightness": 20 }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "saturation": "-100" }, { "gamma": "1.00" }] }, { "featureType": "road", "elementType": "labels.text", "stylers": [{ "gamma": "0.50" }] }, { "featureType": "road", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }, { "gamma": "0.50" }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#c5c6c6" }, { "saturation": "-100" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "lightness": "-13" }] }, { "featureType": "road.highway", "elementType": "labels.icon", "stylers": [{ "lightness": "0" }, { "gamma": "1.09" }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#e4d7c6" }, { "saturation": "-100" }, { "lightness": "47" }] }, { "featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "lightness": "-12" }] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#fbfaf7" }, { "lightness": "77" }] }, { "featureType": "road.local", "elementType": "geometry.fill", "stylers": [{ "lightness": "-5" }, { "saturation": "-100" }] }, { "featureType": "road.local", "elementType": "geometry.stroke", "stylers": [{ "saturation": "-100" }, { "lightness": "-15" }] }, { "featureType": "transit.station.airport", "elementType": "geometry", "stylers": [{ "saturation": "-100" }, { "lightness": "47" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "visibility": "on" }, { "color": "#acbcc9" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "saturation": "53" }] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "lightness": "100" }] }, { "featureType": "water", "elementType": "labels.text.stroke", "stylers": [{ "color": "#009cff" }, { "saturation": "-40" }, { "lightness": "8" }, { "weight": "3" }] }];
-	    var mapProp = {
-	      center: new google.maps.LatLng(47.6097, -122.3331),
-	      zoom: 12,
-	      scrollwheel: false,
-	      panControl: false,
-	      zoomControl: true,
-	      scaleControl: false,
-	      streetViewControl: false,
-	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
-	      styles: mostlyGray
-
-	    };
-
-	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
-
-	    $.get('/data/commerce', function (data) {
-	      data.result.forEach(function (r) {
-	        var marker = new google.maps.Marker({
-	          position: { lat: r.latitude, lng: r.longitude },
-	          map: map,
-	          icon: './images/greypin.png'
-	        });
-	        google.maps.event.addListener(marker, 'click', function () {
-	          var infowindow = new google.maps.InfoWindow({
-	            content: r.description
-	          });
-
-	          $($('.gm-style > div > div+div > div > div')[0]).remove();
-
-	          infowindow.open(map, marker);
-
-	          var node = $('.gm-style > div > div+div > div > div')[0];
-
-	          setTimeout(function () {
-	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
-	          }, 600);
-	        });
-	      });
-	    });
-	  },
-	  componentDidMount: function componentDidMount() {
-	    this.initialize();
-	    this.getViewport();
-	    window.addEventListener("resize", this.getViewport);
-	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    window.removeEventListener("resize", this.getViewport);
-	  },
-	  handleClick: function handleClick(e) {
-	    e.preventDefault();
-	    this.props.refreshPage();
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
-	      _react2.default.createElement(
-	        'div',
-	        { id: 'target' },
-	        _react2.default.createElement(
-	          'div',
-	          { id: 'mobile-wrapper' },
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Commercial History'
-	          )
-	        ),
-	        _react2.default.createElement('div', { className: 'title' }),
-	        _react2.default.createElement(
-	          'div',
-	          { onClick: this.handleClick, className: 'return' },
-	          'MAIN MENU'
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 221 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _newMarker = __webpack_require__(222);
-
-	var _newMarker2 = _interopRequireDefault(_newMarker);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: 'environment',
-	  getInitialState: function getInitialState() {
-	    return {
-	      height: '790px'
-	    };
-	  },
-	  getViewport: function getViewport() {
-	    this.setState({
-	      height: window.innerHeight + 100,
-	      showForm: false
-	    });
-	  },
-	  getViewportOffset: function getViewportOffset(node) {
-	    var windowHeight = window.innerHeight;
-	    return windowHeight - node.offsetTop;
-	  },
-	  initialize: function initialize() {
-	    var _this = this;
-
-	    var nature = [{ "featureType": "landscape", "stylers": [{ "hue": "#FFA800" }, { "saturation": 0 }, { "lightness": 0 }, { "gamma": 1 }] }, { "featureType": "road.highway", "stylers": [{ "hue": "#53FF00" }, { "saturation": -73 }, { "lightness": 40 }, { "gamma": 1 }] }, { "featureType": "road.arterial", "stylers": [{ "hue": "#FBFF00" }, { "saturation": 0 }, { "lightness": 0 }, { "gamma": 1 }] }, { "featureType": "road.local", "stylers": [{ "hue": "#00FFFD" }, { "saturation": 0 }, { "lightness": 30 }, { "gamma": 1 }] }, { "featureType": "water", "stylers": [{ "hue": "#00BFFF" }, { "saturation": 6 }, { "lightness": 8 }, { "gamma": 1 }] }, { "featureType": "poi", "stylers": [{ "hue": "#679714" }, { "saturation": 33.4 }, { "lightness": -25.4 }, { "gamma": 1 }] }];
-	    var mapProp = {
-	      center: new google.maps.LatLng(47.6097, -122.3331),
-	      zoom: 12,
-	      scrollwheel: false,
-	      panControl: false,
-	      zoomControl: true,
-	      scaleControl: false,
-	      streetViewControl: false,
-	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
-	      styles: nature
-	    };
-
-	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
-
-	    $.get('/data/environment', function (data) {
-	      data.result.forEach(function (r) {
-	        var marker = new google.maps.Marker({
-	          position: { lat: r.latitude, lng: r.longitude },
-	          map: map,
-	          icon: './images/greypin.png'
-	        });
-
-	        google.maps.event.addListener(marker, 'click', function () {
-	          var infowindow = new google.maps.InfoWindow({
-	            content: r.description
-	          });
-
-	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+	          if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
 
 	          infowindow.open(map, marker);
 
@@ -25595,7 +25247,7 @@
 	          _react2.default.createElement(
 	            'h1',
 	            null,
-	            'Environmental History'
+	            'Cultural History'
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
@@ -25616,7 +25268,7 @@
 	});
 
 /***/ },
-/* 222 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25629,7 +25281,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(223);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(220);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -25656,13 +25308,13 @@
 	});
 
 /***/ },
-/* 223 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(224);
+	module.exports = __webpack_require__(221);
 
 /***/ },
-/* 224 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25683,8 +25335,8 @@
 
 	var assign = __webpack_require__(39);
 
-	var ReactTransitionGroup = __webpack_require__(225);
-	var ReactCSSTransitionGroupChild = __webpack_require__(227);
+	var ReactTransitionGroup = __webpack_require__(222);
+	var ReactCSSTransitionGroupChild = __webpack_require__(224);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -25750,7 +25402,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 225 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25767,7 +25419,7 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
-	var ReactTransitionChildMapping = __webpack_require__(226);
+	var ReactTransitionChildMapping = __webpack_require__(223);
 
 	var assign = __webpack_require__(39);
 	var emptyFunction = __webpack_require__(15);
@@ -25960,7 +25612,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-/* 226 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26063,7 +25715,7 @@
 	module.exports = ReactTransitionChildMapping;
 
 /***/ },
-/* 227 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26083,8 +25735,8 @@
 	var React = __webpack_require__(2);
 	var ReactDOM = __webpack_require__(3);
 
-	var CSSCore = __webpack_require__(228);
-	var ReactTransitionEvents = __webpack_require__(229);
+	var CSSCore = __webpack_require__(225);
+	var ReactTransitionEvents = __webpack_require__(226);
 
 	var onlyChild = __webpack_require__(156);
 
@@ -26233,7 +25885,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 228 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -26336,7 +25988,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 229 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26450,6 +26102,405 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _newMarker = __webpack_require__(219);
+
+	var _newMarker2 = _interopRequireDefault(_newMarker);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'civil-rights',
+	  getInitialState: function getInitialState() {
+	    return {
+	      height: '790px',
+	      showForm: false
+	    };
+	  },
+	  getViewport: function getViewport() {
+	    this.setState({
+	      height: window.innerHeight + 100
+	    });
+	  },
+	  getViewportOffset: function getViewportOffset(node) {
+	    var windowHeight = window.innerHeight;
+	    return windowHeight - node.offsetTop;
+	  },
+	  initialize: function initialize() {
+	    var _this = this;
+
+	    var paleDawn = [{ "featureType": "administrative", "elementType": "all", "stylers": [{ "visibility": "on" }, { "lightness": 33 }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2e5d4" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#c5dac6" }] }, { "featureType": "poi.park", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 20 }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#c5c6c6" }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#e4d7c6" }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#fbfaf7" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "visibility": "on" }, { "color": "#acbcc9" }] }];
+	    var mapProp = {
+	      center: new google.maps.LatLng(47.6097, -122.3331),
+	      zoom: 12,
+	      scrollwheel: false,
+	      panControl: false,
+	      zoomControl: true,
+	      scaleControl: false,
+	      streetViewControl: false,
+	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
+	      styles: paleDawn
+
+	    };
+
+	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
+
+	    $.get('/data/civil-rights', function (data) {
+	      data.result.forEach(function (r) {
+	        var marker = new google.maps.Marker({
+	          position: { lat: r.latitude, lng: r.longitude },
+	          map: map,
+	          icon: './images/greypin.png'
+	        });
+	        google.maps.event.addListener(marker, 'click', function () {
+	          var infowindow = new google.maps.InfoWindow({
+	            content: r.description
+	          });
+
+	          if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
+
+	          infowindow.open(map, marker);
+
+	          var node = $('.gm-style > div > div+div > div > div')[0];
+
+	          setTimeout(function () {
+	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
+	          }, 600);
+	        });
+	      });
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.initialize();
+	    this.getViewport();
+	    window.addEventListener("resize", this.getViewport);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    window.removeEventListener("resize", this.getViewport);
+	  },
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
+	    this.props.refreshPage();
+	  },
+	  addMarker: function addMarker(e) {
+	    e.preventDefault();
+	    this.setState({
+	      showForm: !this.state.showForm
+	    });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'target' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'mobile-wrapper' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Civil Rights History'
+	          )
+	        ),
+	        _react2.default.createElement('div', { className: 'title' }),
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.addMarker, className: 'new-marker' },
+	          'ADD LOCATION'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.handleClick, className: 'return' },
+	          'MAIN MENU'
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _newMarker = __webpack_require__(219);
+
+	var _newMarker2 = _interopRequireDefault(_newMarker);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'commerce',
+	  getInitialState: function getInitialState() {
+	    return {
+	      height: '790px',
+	      showForm: false
+	    };
+	  },
+	  getViewport: function getViewport() {
+	    this.setState({
+	      height: window.innerHeight + 100
+	    });
+	  },
+	  getViewportOffset: function getViewportOffset(node) {
+	    var windowHeight = window.innerHeight;
+	    return windowHeight - node.offsetTop;
+	  },
+	  initialize: function initialize() {
+	    var _this = this;
+
+	    var mostlyGray = [{ "featureType": "administrative", "elementType": "all", "stylers": [{ "visibility": "on" }, { "lightness": 33 }] }, { "featureType": "administrative", "elementType": "labels", "stylers": [{ "saturation": "-100" }] }, { "featureType": "administrative", "elementType": "labels.text", "stylers": [{ "gamma": "0.75" }] }, { "featureType": "administrative.neighborhood", "elementType": "labels.text.fill", "stylers": [{ "lightness": "-37" }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2e5d4" }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "saturation": "-100" }, { "lightness": "100" }] }, { "featureType": "landscape.natural", "elementType": "labels.text.fill", "stylers": [{ "saturation": "-100" }, { "lightness": "-37" }] }, { "featureType": "landscape.natural", "elementType": "labels.text.stroke", "stylers": [{ "saturation": "-100" }, { "lightness": "100" }, { "weight": "2" }] }, { "featureType": "landscape.natural", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "saturation": "-100" }, { "lightness": "80" }] }, { "featureType": "poi", "elementType": "labels.text", "stylers": [{ "saturation": "-100" }, { "lightness": "15" }] }, { "featureType": "poi", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }] }, { "featureType": "poi.attraction", "elementType": "geometry", "stylers": [{ "lightness": "40" }, { "visibility": "off" }] }, { "featureType": "poi.attraction", "elementType": "labels.text", "stylers": [{ "saturation": "7" }, { "gamma": "0.50" }] }, { "featureType": "poi.attraction", "elementType": "labels.icon", "stylers": [{ "saturation": "0" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#c5dac6" }, { "visibility": "on" }, { "saturation": "-95" }, { "lightness": "62" }] }, { "featureType": "poi.park", "elementType": "labels", "stylers": [{ "visibility": "on" }, { "lightness": 20 }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "lightness": 20 }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "saturation": "-100" }, { "gamma": "1.00" }] }, { "featureType": "road", "elementType": "labels.text", "stylers": [{ "gamma": "0.50" }] }, { "featureType": "road", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }, { "gamma": "0.50" }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#c5c6c6" }, { "saturation": "-100" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "lightness": "-13" }] }, { "featureType": "road.highway", "elementType": "labels.icon", "stylers": [{ "lightness": "0" }, { "gamma": "1.09" }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#e4d7c6" }, { "saturation": "-100" }, { "lightness": "47" }] }, { "featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "lightness": "-12" }] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{ "saturation": "-100" }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#fbfaf7" }, { "lightness": "77" }] }, { "featureType": "road.local", "elementType": "geometry.fill", "stylers": [{ "lightness": "-5" }, { "saturation": "-100" }] }, { "featureType": "road.local", "elementType": "geometry.stroke", "stylers": [{ "saturation": "-100" }, { "lightness": "-15" }] }, { "featureType": "transit.station.airport", "elementType": "geometry", "stylers": [{ "saturation": "-100" }, { "lightness": "47" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "visibility": "on" }, { "color": "#acbcc9" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "saturation": "53" }] }, { "featureType": "water", "elementType": "labels.text.fill", "stylers": [{ "lightness": "100" }] }, { "featureType": "water", "elementType": "labels.text.stroke", "stylers": [{ "color": "#009cff" }, { "saturation": "-40" }, { "lightness": "8" }, { "weight": "3" }] }];
+	    var mapProp = {
+	      center: new google.maps.LatLng(47.6097, -122.3331),
+	      zoom: 12,
+	      scrollwheel: false,
+	      panControl: false,
+	      zoomControl: true,
+	      scaleControl: false,
+	      streetViewControl: false,
+	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
+	      styles: mostlyGray
+
+	    };
+
+	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
+
+	    $.get('/data/commerce', function (data) {
+	      data.result.forEach(function (r) {
+	        var marker = new google.maps.Marker({
+	          position: { lat: r.latitude, lng: r.longitude },
+	          map: map,
+	          icon: './images/greypin.png'
+	        });
+	        google.maps.event.addListener(marker, 'click', function () {
+	          var infowindow = new google.maps.InfoWindow({
+	            content: r.description
+	          });
+
+	          if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
+
+	          infowindow.open(map, marker);
+
+	          var node = $('.gm-style > div > div+div > div > div')[0];
+
+	          setTimeout(function () {
+	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
+	          }, 600);
+	        });
+	      });
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.initialize();
+	    this.getViewport();
+	    window.addEventListener("resize", this.getViewport);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    window.removeEventListener("resize", this.getViewport);
+	  },
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
+	    this.props.refreshPage();
+	  },
+	  addMarker: function addMarker(e) {
+	    e.preventDefault();
+	    this.setState({
+	      showForm: !this.state.showForm
+	    });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'target' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'mobile-wrapper' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Commercial History'
+	          )
+	        ),
+	        _react2.default.createElement('div', { className: 'title' }),
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.addMarker, className: 'new-marker' },
+	          'ADD LOCATION'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.handleClick, className: 'return' },
+	          'MAIN MENU'
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _newMarker = __webpack_require__(219);
+
+	var _newMarker2 = _interopRequireDefault(_newMarker);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'environment',
+	  getInitialState: function getInitialState() {
+	    return {
+	      height: '790px',
+	      showForm: false
+	    };
+	  },
+	  getViewport: function getViewport() {
+	    this.setState({
+	      height: window.innerHeight + 100
+	    });
+	  },
+	  getViewportOffset: function getViewportOffset(node) {
+	    var windowHeight = window.innerHeight;
+	    return windowHeight - node.offsetTop;
+	  },
+	  initialize: function initialize() {
+	    var _this = this;
+
+	    var nature = [{ "featureType": "landscape", "stylers": [{ "hue": "#FFA800" }, { "saturation": 0 }, { "lightness": 0 }, { "gamma": 1 }] }, { "featureType": "road.highway", "stylers": [{ "hue": "#53FF00" }, { "saturation": -73 }, { "lightness": 40 }, { "gamma": 1 }] }, { "featureType": "road.arterial", "stylers": [{ "hue": "#FBFF00" }, { "saturation": 0 }, { "lightness": 0 }, { "gamma": 1 }] }, { "featureType": "road.local", "stylers": [{ "hue": "#00FFFD" }, { "saturation": 0 }, { "lightness": 30 }, { "gamma": 1 }] }, { "featureType": "water", "stylers": [{ "hue": "#00BFFF" }, { "saturation": 6 }, { "lightness": 8 }, { "gamma": 1 }] }, { "featureType": "poi", "stylers": [{ "hue": "#679714" }, { "saturation": 33.4 }, { "lightness": -25.4 }, { "gamma": 1 }] }];
+	    var mapProp = {
+	      center: new google.maps.LatLng(47.6097, -122.3331),
+	      zoom: 12,
+	      scrollwheel: false,
+	      panControl: false,
+	      zoomControl: true,
+	      scaleControl: false,
+	      streetViewControl: false,
+	      mapTypeclassName: google.maps.MapTypeId.ROADMAP,
+	      styles: nature
+	    };
+
+	    var map = new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp);
+
+	    $.get('/data/environment', function (data) {
+	      data.result.forEach(function (r) {
+	        var marker = new google.maps.Marker({
+	          position: { lat: r.latitude, lng: r.longitude },
+	          map: map,
+	          icon: './images/greypin.png'
+	        });
+
+	        google.maps.event.addListener(marker, 'click', function () {
+	          var infowindow = new google.maps.InfoWindow({
+	            content: r.description
+	          });
+
+	          if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
+
+	          infowindow.open(map, marker);
+
+	          var node = $('.gm-style > div > div+div > div > div')[0];
+
+	          setTimeout(function () {
+	            if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
+	          }, 600);
+	        });
+	      });
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.initialize();
+	    this.getViewport();
+	    window.addEventListener("resize", this.getViewport);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    window.removeEventListener("resize", this.getViewport);
+	  },
+	  handleClick: function handleClick(e) {
+	    e.preventDefault();
+	    this.props.refreshPage();
+	  },
+	  addMarker: function addMarker(e) {
+	    e.preventDefault();
+	    this.setState({
+	      showForm: !this.state.showForm
+	    });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'target' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'mobile-wrapper' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Environmental History'
+	          )
+	        ),
+	        _react2.default.createElement('div', { className: 'title' }),
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.addMarker, className: 'new-marker' },
+	          'ADD LOCATION'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.handleClick, className: 'return' },
+	          'MAIN MENU'
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
 /* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26463,13 +26514,18 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _newMarker = __webpack_require__(219);
+
+	var _newMarker2 = _interopRequireDefault(_newMarker);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'social-policy',
 	  getInitialState: function getInitialState() {
 	    return {
-	      height: '790px'
+	      height: '790px',
+	      showForm: false
 	    };
 	  },
 	  getViewport: function getViewport() {
@@ -26512,7 +26568,7 @@
 	            content: r.description
 	          });
 
-	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+	          if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
 
 	          infowindow.open(map, marker);
 
@@ -26537,6 +26593,12 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
+	  addMarker: function addMarker(e) {
+	    e.preventDefault();
+	    this.setState({
+	      showForm: !this.state.showForm
+	    });
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -26555,6 +26617,12 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.addMarker, className: 'new-marker' },
+	          'ADD LOCATION'
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.handleClick, className: 'return' },
@@ -26579,13 +26647,18 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _newMarker = __webpack_require__(219);
+
+	var _newMarker2 = _interopRequireDefault(_newMarker);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'technology',
 	  getInitialState: function getInitialState() {
 	    return {
-	      height: '790px'
+	      height: '790px',
+	      showForm: false
 	    };
 	  },
 	  getViewport: function getViewport() {
@@ -26627,7 +26700,7 @@
 	            content: r.description
 	          });
 
-	          $($('.gm-style > div > div+div > div > div')[0]).remove();
+	          if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
 
 	          infowindow.open(map, marker);
 
@@ -26652,6 +26725,12 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
+	  addMarker: function addMarker(e) {
+	    e.preventDefault();
+	    this.setState({
+	      showForm: !this.state.showForm
+	    });
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -26670,6 +26749,12 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: this.addMarker, className: 'new-marker' },
+	          'ADD LOCATION'
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.handleClick, className: 'return' },

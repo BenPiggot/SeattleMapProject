@@ -1,10 +1,12 @@
 import React from 'react';
+import NewMarker from './new-marker.jsx'
 
 export default React.createClass({
 
   getInitialState() {
     return {
-      height: '790px'
+      height: '790px',
+      showForm: false
     }
   },
 
@@ -48,7 +50,8 @@ export default React.createClass({
             content: r.description
           });
 
-          $($('.gm-style > div > div+div > div > div')[0]).remove()
+          if ($('.gm-style > div > div+div > div > div').length > 1)
+            $($('.gm-style > div > div+div > div > div')[0]).remove()
 
           infowindow.open(map, marker);
 
@@ -78,6 +81,13 @@ export default React.createClass({
     this.props.refreshPage()
   },
 
+  addMarker(e) {
+    e.preventDefault()
+    this.setState({
+      showForm: !this.state.showForm
+    })
+  },
+
   render() {
     return <div>
       <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
@@ -86,6 +96,8 @@ export default React.createClass({
             <h1>Social History</h1>
           </div>
           <div className="title"></div>
+          { this.state.showForm ? <NewMarker /> : null }
+          <div onClick={this.addMarker} className="new-marker">ADD LOCATION</div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>
         </div>
       </div>
