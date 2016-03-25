@@ -65,6 +65,41 @@ html, body {
    cursor: pointer;
 }
 
+.new-marker {
+  position: absolute; 
+  bottom: 0.5em; 
+  right: 8em;
+  z-index: 49;
+  height: 1.5em;
+  width: 8em;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'Oswald', sans-serif;
+  font-size: 2em;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-form {
+  position: absolute;
+  top: 2rem;
+  right: 0.5rem;
+  z-index: 49;
+  height: 50%;
+  width: 50%;
+  background-color: #fff;
+}
+
+.add-form-appear {
+  opacity: 0.01;
+}
+
+.add-form-appear.add-form-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
 .title-category { 
    position: absolute; 
    top: 0.2em; 

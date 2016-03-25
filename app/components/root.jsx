@@ -95,12 +95,12 @@ export default React.createClass({
            <footer id="vanishLater">
              <nav id="eventSearch">
               <ul id="category">
-                <li onClick={this.handleClick} id="culture"><a>Culture</a></li>
-                <li onClick={this.handleClick} id="civil-rights"><a>Civil Rights</a></li>
-                <li onClick={this.handleClick} id="commerce"><a>Commerce</a></li>
-                <li onClick={this.handleClick} id="environment"><a>Environment</a></li>
-                <li onClick={this.handleClick} id="social-policy"><a>Social Policy</a></li>
-                <li onClick={this.handleClick} id="technology"><a>Technology</a></li>
+                <li onClick={this.handleClick}><a>Culture</a></li>
+                <li onClick={this.handleClick}><a>Civil Rights</a></li>
+                <li onClick={this.handleClick}><a>Commerce</a></li>
+                <li onClick={this.handleClick}><a>Environment</a></li>
+                <li onClick={this.handleClick}><a>Social Policy</a></li>
+                <li onClick={this.handleClick}><a>Technology</a></li>
               </ul>
             </nav>
           </footer>

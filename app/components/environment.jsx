@@ -1,4 +1,5 @@
 import React from 'react';
+import NewMarker from './new-marker.jsx'
 
 export default React.createClass({
 
@@ -10,7 +11,8 @@ export default React.createClass({
 
   getViewport() {
     this.setState({
-      height: window.innerHeight + 100
+      height: window.innerHeight + 100,
+      showForm: false
     })
   },
 
@@ -78,6 +80,13 @@ export default React.createClass({
     this.props.refreshPage()
   },
 
+  addMarker(e) {
+    e.preventDefault()
+    this.setState({
+      showForm: !this.state.showForm
+    })
+  },
+
   render() {
     return <div>
       <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
@@ -86,6 +95,8 @@ export default React.createClass({
             <h1>Environmental History</h1>
           </div>
           <div className="title"></div>
+          { this.state.showForm ? <NewMarker /> : null }
+          <div onClick={this.addMarker} className="new-marker">ADD LOCATION</div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>
         </div>
       </div>
