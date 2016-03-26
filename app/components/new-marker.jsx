@@ -6,7 +6,7 @@ export default React.createClass({
   handleSubmit(e) {
     e.preventDefault()
     const path = this.props.subject.toLowerCase().replace(' ', '-')
-    debugger
+
     $.ajax({
       method: 'POST',
       url: `/new/${path}`, 
@@ -14,6 +14,34 @@ export default React.createClass({
       success: (data) => {
         console.log(data)
         this.props.closeForm()
+
+        $.get(`/data/${path}`, (data) => {
+          data.result.forEach( (r) => {
+            let marker = new google.maps.Marker({
+              position: {lat: r.latitude, lng: r.longitude},
+              map: map,
+              icon: './images/greypin.png'
+            });
+
+            google.maps.event.addListener(marker, 'click', () => {
+              let infowindow = new google.maps.InfoWindow({
+                content: r.description
+              });
+
+              if ($('.gm-style > div > div+div > div > div').length > 1)
+                $($('.gm-style > div > div+div > div > div')[0]).remove()
+
+              infowindow.open(map, marker);
+
+              const node = $('.gm-style > div > div+div > div > div')[0]
+
+              setTimeout( () => {
+                if (screen.width >= 600 && (this.getViewportOffset(node)) > 600) 
+                  map.panBy(0, -110);
+              }, 600);
+            })
+          })
+        })
       }
     })
   },
@@ -27,6 +55,9 @@ export default React.createClass({
           </fieldset>
           <fieldset className='form-group'>
             <input className='form-control' type='text' name='description' placeholder='Description' />
+          </fieldset>
+          <fieldset className='form-group'>
+            <input className='form-control' type='text' name='address' placeholder='Address (Optional)' />
           </fieldset>
           <fieldset className='form-group'>
             <input className='form-control' type='text' name='image' placeholder="Image URL" />
