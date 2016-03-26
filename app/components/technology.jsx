@@ -80,8 +80,7 @@ export default React.createClass({
     this.props.refreshPage()
   },
 
-  addMarker(e) {
-    e.preventDefault()
+  addMarker() {
     this.setState({
       showForm: !this.state.showForm
     })
@@ -95,7 +94,7 @@ export default React.createClass({
             <h1>Technological History</h1>
           </div>
           <div className="title"></div>
-          { this.state.showForm ? <NewMarker /> : null }
+          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.addMarker} /> : null }
           <div onClick={this.addMarker} className="new-marker">ADD LOCATION</div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>
         </div>

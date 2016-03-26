@@ -101,6 +101,40 @@ app.get('/data/technology', (req, res) => {
 })
 
 
+
+// POST routes
+app.post('/new/environment', (req, res) => {
+  console.log('success', req.body)
+  res.send(true)
+})
+
+app.post('/new/social-policy', (req, res) => {
+  console.log('success', req.body)
+  res.send(true)
+})
+
+app.post('/new/technology', (req, res) => {
+  console.log('success', req.body)
+  res.send(true)
+})
+
+app.post('/new/culture', (req, res) => {
+  console.log('success', req.body)
+  res.send(true)
+})
+
+app.post('/new/civil-rights', (req, res) => {
+  console.log('success', req.body)
+  res.send(true)
+})
+
+app.post('/new/commerce', (req, res) => {
+  console.log('success', req.body)
+  res.send(true)
+})
+
+
+
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server started ...")
 })

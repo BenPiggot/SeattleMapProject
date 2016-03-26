@@ -25038,10 +25038,10 @@
 	    });
 	  },
 	  render: function render() {
-	    if (this.state.subject == 'Culture') return _react2.default.createElement(_culture2.default, { key: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Civil Rights') return _react2.default.createElement(_civilRights2.default, { key: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Commerce') return _react2.default.createElement(_commerce2.default, { key: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Environment') return _react2.default.createElement(_environment2.default, { key: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Social Policy') return _react2.default.createElement(_socialPolicy2.default, { key: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Technology') return _react2.default.createElement(_technology2.default, { key: this.state.subject, refreshPage: this.refreshPage });else {
+	    if (this.state.subject == 'Culture') return _react2.default.createElement(_culture2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Civil Rights') return _react2.default.createElement(_civilRights2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Commerce') return _react2.default.createElement(_commerce2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Environment') return _react2.default.createElement(_environment2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Social Policy') return _react2.default.createElement(_socialPolicy2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Technology') return _react2.default.createElement(_technology2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else {
 	      return _react2.default.createElement(
 	        'div',
-	        { key: this.state.subject },
+	        { subject: this.state.subject },
 	        _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
 	        _react2.default.createElement(
 	          'div',
@@ -25227,8 +25227,7 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker(e) {
-	    e.preventDefault();
+	  addMarker: function addMarker() {
 	    this.setState({
 	      showForm: !this.state.showForm
 	    });
@@ -25251,7 +25250,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.addMarker, className: 'new-marker' },
@@ -25289,18 +25288,52 @@
 
 	exports.default = _react2.default.createClass({
 	  displayName: 'new-marker',
+	  handleSubmit: function handleSubmit(e) {
+	    var _this = this;
+
+	    e.preventDefault();
+	    var path = this.props.subject.toLowerCase().replace(' ', '-');
+	    debugger;
+	    $.ajax({
+	      method: 'POST',
+	      url: '/new/' + path,
+	      data: $(this.refs.form).serialize(),
+	      success: function success(data) {
+	        console.log(data);
+	        _this.props.closeForm();
+	      }
+	    });
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      _reactAddonsCssTransitionGroup2.default,
 	      { transitionName: 'add-form', transitionAppear: true, transitionAppearTimeout: 500 },
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'add-form' },
+	        { onSubmit: this.handleSubmit, className: 'add-form' },
 	        _react2.default.createElement(
 	          'form',
-	          null,
-	          _react2.default.createElement('input', { type: 'text' }),
-	          _react2.default.createElement('input', { type: 'submit' })
+	          { ref: 'form' },
+	          _react2.default.createElement(
+	            'fieldset',
+	            { className: 'form-group' },
+	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'location', placeholder: 'Location' })
+	          ),
+	          _react2.default.createElement(
+	            'fieldset',
+	            { className: 'form-group' },
+	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'description', placeholder: 'Description' })
+	          ),
+	          _react2.default.createElement(
+	            'fieldset',
+	            { className: 'form-group' },
+	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'image', placeholder: 'Image URL' })
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn btn-primary', type: 'submit' },
+	            'Submit'
+	          )
 	        )
 	      )
 	    );
@@ -26194,8 +26227,7 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker(e) {
-	    e.preventDefault();
+	  addMarker: function addMarker() {
 	    this.setState({
 	      showForm: !this.state.showForm
 	    });
@@ -26218,7 +26250,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.addMarker, className: 'new-marker' },
@@ -26327,8 +26359,7 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker(e) {
-	    e.preventDefault();
+	  addMarker: function addMarker() {
 	    this.setState({
 	      showForm: !this.state.showForm
 	    });
@@ -26351,7 +26382,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.addMarker, className: 'new-marker' },
@@ -26460,8 +26491,7 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker(e) {
-	    e.preventDefault();
+	  addMarker: function addMarker() {
 	    this.setState({
 	      showForm: !this.state.showForm
 	    });
@@ -26484,7 +26514,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.addMarker, className: 'new-marker' },
@@ -26593,8 +26623,7 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker(e) {
-	    e.preventDefault();
+	  addMarker: function addMarker() {
 	    this.setState({
 	      showForm: !this.state.showForm
 	    });
@@ -26617,7 +26646,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.addMarker, className: 'new-marker' },
@@ -26725,8 +26754,7 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker(e) {
-	    e.preventDefault();
+	  addMarker: function addMarker() {
 	    this.setState({
 	      showForm: !this.state.showForm
 	    });
@@ -26749,7 +26777,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, null) : null,
+	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.addMarker, className: 'new-marker' },

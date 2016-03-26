@@ -73,19 +73,19 @@ export default React.createClass({
 
   render() {
     if (this.state.subject == 'Culture') 
-      return <Culture key={this.state.subject} refreshPage={this.refreshPage} />
+      return <Culture subject={this.state.subject} refreshPage={this.refreshPage} />
     else if (this.state.subject == 'Civil Rights')
-      return <CivilRights key={this.state.subject} refreshPage={this.refreshPage} />
+      return <CivilRights subject={this.state.subject} refreshPage={this.refreshPage} />
     else if (this.state.subject == 'Commerce')
-      return <Commerce key={this.state.subject} refreshPage={this.refreshPage} />
+      return <Commerce subject={this.state.subject} refreshPage={this.refreshPage} />
     else if (this.state.subject == 'Environment')
-      return <Environment key={this.state.subject} refreshPage={this.refreshPage} />
+      return <Environment subject={this.state.subject} refreshPage={this.refreshPage} />
     else if (this.state.subject == 'Social Policy')
-      return <SocialPolicy key={this.state.subject} refreshPage={this.refreshPage} />
+      return <SocialPolicy subject={this.state.subject} refreshPage={this.refreshPage} />
     else if (this.state.subject == 'Technology')
-      return <Technology key={this.state.subject} refreshPage={this.refreshPage} />
+      return <Technology subject={this.state.subject} refreshPage={this.refreshPage} />
     else {
-      return <div key={this.state.subject}>
+      return <div subject={this.state.subject}>
           <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
             <div id="target" className="innerHeader">
             <div id="mobile-wrapper">
