@@ -10,3 +10,6 @@ although I think its ulimate value will be as an educational tool for high schoo
 Seattle Backstory is built using JavaScript, jQuery, and, especially, the Google Maps API. The project is currently front-end only,
 but I am planning on adding MVC framework (likely node.js) as I continue to develop the idea. To view the site, visit
 http://www.seattlebackstory.com.
+
+### Issues
+Unsolved dependency issue means .babelrc must be empty object when using Node Version 4.4.5, but requires presets when using Node 0.12.7
