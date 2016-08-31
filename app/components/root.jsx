@@ -22,7 +22,7 @@ export default React.createClass({
     })
   },
 
-   initialize() {
+  initialize() {
     const shiftWorker = [{"stylers":[{"saturation":-100},{"gamma":0.6}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"saturation":50},{"gamma":0},{"hue":"#50a5d1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"color":"#333333"}]},{"featureType":"road.local","elementType":"labels.text","stylers":[{"weight":0.5},{"color":"#333333"}]},{"featureType":"transit.station","elementType":"labels.icon","stylers":[{"gamma":1},{"saturation":50}]}]
     const mapProp = {
       center: new google.maps.LatLng(47.6097, -122.3331),
@@ -40,7 +40,7 @@ export default React.createClass({
                 new google.maps.Map(this.refs.googleMap.getDOMNode(), mapProp) :
                 new google.maps.Map(document.getElementsByClassName('googleMap')[0], mapProp)
 
-     $.get('/data', (data) => {
+    $.get('/data', (data) => {
       data.result.forEach( (r) => {
         new google.maps.Marker({
           position: {lat: r.latitude, lng: r.longitude},
@@ -73,7 +73,7 @@ export default React.createClass({
 
   render() {
     if (this.state.subject == 'Culture') 
-      return <Culture subject={this.state.subject} refreshPage={this.refreshPage} />
+      return <Culture {...props} />
     else if (this.state.subject == 'Civil Rights')
       return <CivilRights subject={this.state.subject} refreshPage={this.refreshPage} />
     else if (this.state.subject == 'Commerce')
@@ -87,23 +87,23 @@ export default React.createClass({
     else {
       return <div subject={this.state.subject}>
           <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
-            <div id="target" className="innerHeader">
+          <div id="target" className="innerHeader">
             <div id="mobile-wrapper">
               <h1>Seattle Backstory</h1>
               <p id="subhead">All the History that is fit to Map</p>
             </div>
-           <footer id="vanishLater">
-             <nav id="eventSearch">
-              <ul id="category">
-                <li onClick={this.handleClick}><a>Culture</a></li>
-                <li onClick={this.handleClick}><a>Civil Rights</a></li>
-                <li onClick={this.handleClick}><a>Commerce</a></li>
-                <li onClick={this.handleClick}><a>Environment</a></li>
-                <li onClick={this.handleClick}><a>Social Policy</a></li>
-                <li onClick={this.handleClick}><a>Technology</a></li>
-              </ul>
-            </nav>
-          </footer>
+            <footer id="vanishLater">
+              <nav id="eventSearch">
+                <ul id="category">
+                  <li onClick={this.handleClick}><a>Culture</a></li>
+                  <li onClick={this.handleClick}><a>Civil Rights</a></li>
+                  <li onClick={this.handleClick}><a>Commerce</a></li>
+                  <li onClick={this.handleClick}><a>Environment</a></li>
+                  <li onClick={this.handleClick}><a>Social Policy</a></li>
+                  <li onClick={this.handleClick}><a>Technology</a></li>
+                </ul>
+              </nav>
+            </footer>
           </div>
           <div className="title"></div>
           <div className="over_map"></div>
