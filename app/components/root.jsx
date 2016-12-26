@@ -72,42 +72,50 @@ export default React.createClass({
   },
 
   render() {
-    if (this.state.subject == 'Culture') 
-      return <Culture {...props} />
-    else if (this.state.subject == 'Civil Rights')
-      return <CivilRights subject={this.state.subject} refreshPage={this.refreshPage} />
-    else if (this.state.subject == 'Commerce')
-      return <Commerce subject={this.state.subject} refreshPage={this.refreshPage} />
-    else if (this.state.subject == 'Environment')
-      return <Environment subject={this.state.subject} refreshPage={this.refreshPage} />
-    else if (this.state.subject == 'Social Policy')
-      return <SocialPolicy subject={this.state.subject} refreshPage={this.refreshPage} />
-    else if (this.state.subject == 'Technology')
-      return <Technology subject={this.state.subject} refreshPage={this.refreshPage} />
-    else {
-      return <div subject={this.state.subject}>
-          <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
-          <div id="target" className="innerHeader">
-            <div id="mobile-wrapper">
-              <h1>Seattle Backstory</h1>
-              <p id="subhead">All the History that is fit to Map</p>
+    const props = {
+      subject: this.state.subject,
+      refreshPage: this.refreshPage
+    };
+
+    switch(this.state.subject) {
+      case 'Culture':
+        return <Culture {...props} />
+      case 'Civil Rights':
+        return <CivilRights {...props} />
+      case 'Commerce':
+        return <Commerce {...props} />
+      case 'Environment':
+        return <Environment {...props} />
+      case 'Social Policy':
+        return <SocialPolicy {...props} />
+      case 'Technology':
+        return <Technology {...props} />
+      default: 
+        return (
+          <div subject={this.state.subject}>
+            <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
+            <div id="target" className="innerHeader">
+              <div id="mobile-wrapper">
+                <h1>Seattle Backstory</h1>
+                <p id="subhead">All the History that is fit to Map</p>
+              </div>
+              <footer id="vanishLater">
+                <nav id="eventSearch">
+                  <ul id="category">
+                    <li onClick={this.handleClick}><a>Culture</a></li>
+                    <li onClick={this.handleClick}><a>Civil Rights</a></li>
+                    <li onClick={this.handleClick}><a>Commerce</a></li>
+                    <li onClick={this.handleClick}><a>Environment</a></li>
+                    <li onClick={this.handleClick}><a>Social Policy</a></li>
+                    <li onClick={this.handleClick}><a>Technology</a></li>
+                  </ul>
+                </nav>
+              </footer>
             </div>
-            <footer id="vanishLater">
-              <nav id="eventSearch">
-                <ul id="category">
-                  <li onClick={this.handleClick}><a>Culture</a></li>
-                  <li onClick={this.handleClick}><a>Civil Rights</a></li>
-                  <li onClick={this.handleClick}><a>Commerce</a></li>
-                  <li onClick={this.handleClick}><a>Environment</a></li>
-                  <li onClick={this.handleClick}><a>Social Policy</a></li>
-                  <li onClick={this.handleClick}><a>Technology</a></li>
-                </ul>
-              </nav>
-            </footer>
+            <div className="title"></div>
+            <div className="over_map"></div>
           </div>
-          <div className="title"></div>
-          <div className="over_map"></div>
-        </div>
+        )
       }
     }
 });
