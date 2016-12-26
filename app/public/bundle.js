@@ -25391,6 +25391,9 @@
 	      }
 	    });
 	  },
+	  handleClick: function handleClick() {
+	    this.props.closeForm();
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      _reactAddonsCssTransitionGroup2.default,
@@ -25398,6 +25401,15 @@
 	      _react2.default.createElement(
 	        'div',
 	        { onSubmit: this.handleSubmit, className: 'add-form' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'add-form-header' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'add-form-close', onClick: this.handleClick },
+	            'Close'
+	          )
+	        ),
 	        _react2.default.createElement(
 	          'form',
 	          { ref: 'form' },
@@ -26724,7 +26736,6 @@
 	    this.props.refreshPage();
 	  },
 	  openAddForm: function openAddForm() {
-	    window.addEventListener('click', this.closeAddForm);
 	    this.setState({
 	      showForm: true
 	    });
@@ -26733,7 +26744,6 @@
 	    this.setState({
 	      showForm: false
 	    });
-	    window.removeEventListener('click', this.closeAddForm);
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(

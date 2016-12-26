@@ -88,11 +88,15 @@ html, body {
   top: 2rem;
   right: 0.5rem;
   z-index: 49;
-  height: 50%;
-  width: 50%;
+  height: 80%;
+  width: 70%;
   padding: 1rem;
   background-color: #fff;
   font-family: 'Raleway', sans-serif;
+}
+
+.add-form-header {
+  height: 30px;
 }
 
 .add-form-appear {
@@ -104,8 +108,19 @@ html, body {
   transition: opacity 0.5s ease-in;
 }
 
+.add-form-close {
+  color: #ccc;
+  float: right;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 .btn-square, .input-square {
   border-radius: 0;
+}
+
+.add-form textarea {
+  height: 225px;
 }
 
 .title-category { 

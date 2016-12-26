@@ -46,9 +46,16 @@ export default React.createClass({
     })
   },
 
+  handleClick() {
+    this.props.closeForm();
+  },
+
   render() {
     return <ReactCSSTransitionGroup transitionName="add-form" transitionAppear={true} transitionAppearTimeout={500}>
       <div onSubmit={this.handleSubmit} className='add-form'>
+        <div className='add-form-header'>
+          <div className='add-form-close' onClick={this.handleClick}>Close</div>
+        </div>
         <form ref='form'>
           <fieldset className='form-group'>
             <input className='form-control input-square' type='text' name='location' placeholder='Location' />

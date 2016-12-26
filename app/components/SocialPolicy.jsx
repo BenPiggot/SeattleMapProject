@@ -82,7 +82,6 @@ export default React.createClass({
   },
 
   openAddForm() {
-    window.addEventListener('click', this.closeAddForm)
     this.setState({
       showForm: true
     })
@@ -92,8 +91,8 @@ export default React.createClass({
     this.setState({
       showForm: false
     })
-    window.removeEventListener('click', this.closeAddForm)
   },
+  
   render() {
     return <div>
       <div style={{height: this.state.height}} className="googleMap" ref="googleMap"></div>
