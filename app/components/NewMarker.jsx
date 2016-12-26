@@ -51,18 +51,18 @@ export default React.createClass({
       <div onSubmit={this.handleSubmit} className='add-form'>
         <form ref='form'>
           <fieldset className='form-group'>
-            <input className='form-control' type='text' name='location' placeholder='Location' />
+            <input className='form-control input-square' type='text' name='location' placeholder='Location' />
           </fieldset>
           <fieldset className='form-group'>
-            <input className='form-control' type='text' name='description' placeholder='Description' />
+            <input className='form-control input-square' type='text' name='address' placeholder='Address (Optional)' />
           </fieldset>
           <fieldset className='form-group'>
-            <input className='form-control' type='text' name='address' placeholder='Address (Optional)' />
+            <input className='form-control input-square' type='text' name='image' placeholder="Image URL" />
           </fieldset>
           <fieldset className='form-group'>
-            <input className='form-control' type='text' name='image' placeholder="Image URL" />
+            <textarea className='form-control input-square' type='text' name='description' placeholder='Description' />
           </fieldset>
-          <button className='btn btn-primary' type='submit'>Submit</button>
+          <button className='btn btn-primary btn-square' type='submit'>Submit</button>
         </form>
       </div>
     </ReactCSSTransitionGroup>

@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import hbs from 'express-handlebars';
 import React from 'react';
 import { Router } from 'react-router';
-import Root from './components/root';
+import Root from './components/Root';
 import routes from './shared/routes';
 import db from '../models';
 

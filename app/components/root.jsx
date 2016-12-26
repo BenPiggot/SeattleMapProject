@@ -1,10 +1,10 @@
 import React from 'react';
-import Culture from './culture.jsx';
-import CivilRights from './civil-rights.jsx';
-import Commerce from './commerce.jsx';
-import Environment from './environment.jsx';
-import SocialPolicy from './social-policy.jsx';
-import Technology from './technology.jsx';
+import Culture from './Culture.jsx';
+import CivilRights from './CivilRights.jsx';
+import Commerce from './Commerce.jsx';
+import Environment from './Environment.jsx';
+import SocialPolicy from './SocialPolicy.jsx';
+import Technology from './Technology.jsx';
 
 
 export default React.createClass({

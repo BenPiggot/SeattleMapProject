@@ -1,5 +1,5 @@
 import React from 'react';
-import NewMarker from './new-marker.jsx'
+import NewMarker from './NewMarker.jsx'
 
 export default React.createClass({
 
@@ -76,14 +76,15 @@ export default React.createClass({
     window.removeEventListener("resize", this.getViewport);
   },
 
-  handleClick(e) {
-    e.preventDefault()
-    this.props.refreshPage()
+  openAddForm() {
+    this.setState({
+      showForm: true
+    })
   },
 
-  addMarker() {
+  closeAddForm() {
     this.setState({
-      showForm: !this.state.showForm
+      showForm: false
     })
   },
 
@@ -95,8 +96,8 @@ export default React.createClass({
             <h1>Civil Rights History</h1>
           </div>
           <div className="title"></div>
-          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.addMarker} /> : null }
-          <div onClick={this.addMarker} className="new-marker">ADD LOCATION</div>
+          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.closeAddForm} /> : null }
+          <div onClick={this.openAddForm} className="new-marker">ADD LOCATION</div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>
         </div>
       </div>

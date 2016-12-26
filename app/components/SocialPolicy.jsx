@@ -1,5 +1,5 @@
 import React from 'react';
-import NewMarker from './new-marker.jsx'
+import NewMarker from './NewMarker.jsx'
 
 export default React.createClass({
 
@@ -81,22 +81,29 @@ export default React.createClass({
     this.props.refreshPage()
   },
 
-  addMarker() {
+  openAddForm() {
+    window.addEventListener('click', this.closeAddForm)
     this.setState({
-      showForm: !this.state.showForm
+      showForm: true
     })
   },
 
+  closeAddForm() {
+    this.setState({
+      showForm: false
+    })
+    window.removeEventListener('click', this.closeAddForm)
+  },
   render() {
     return <div>
-      <div style={{height: this.state.height }} className="googleMap" ref="googleMap"></div>
+      <div style={{height: this.state.height}} className="googleMap" ref="googleMap"></div>
         <div id="target">
           <div id="mobile-wrapper">
             <h1>Social History</h1>
           </div>
           <div className="title"></div>
-          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.addMarker} /> : null }
-          <div onClick={this.addMarker} className="new-marker">ADD LOCATION</div>
+          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.closeAddForm} /> : null }
+          <div onClick={this.openAddForm} className="new-marker">ADD LOCATION</div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>
         </div>
       </div>

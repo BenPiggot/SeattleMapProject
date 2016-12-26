@@ -20752,8 +20752,8 @@
 	  var finishTransition = options.finishTransition;
 	  var saveState = options.saveState;
 	  var go = options.go;
-	  var keyLength = options.keyLength;
 	  var getUserConfirmation = options.getUserConfirmation;
+	  var keyLength = options.keyLength;
 
 	  if (typeof keyLength !== 'number') keyLength = DefaultKeyLength;
 
@@ -21138,24 +21138,56 @@
 	"use strict";
 
 	exports.__esModule = true;
+	var _slice = Array.prototype.slice;
 	exports.loopAsync = loopAsync;
 
 	function loopAsync(turns, work, callback) {
-	  var currentTurn = 0;
-	  var isDone = false;
+	  var currentTurn = 0,
+	      isDone = false;
+	  var sync = false,
+	      hasNext = false,
+	      doneArgs = undefined;
 
 	  function done() {
 	    isDone = true;
+	    if (sync) {
+	      // Iterate instead of recursing if possible.
+	      doneArgs = [].concat(_slice.call(arguments));
+	      return;
+	    }
+
 	    callback.apply(this, arguments);
 	  }
 
 	  function next() {
-	    if (isDone) return;
+	    if (isDone) {
+	      return;
+	    }
 
-	    if (currentTurn < turns) {
+	    hasNext = true;
+	    if (sync) {
+	      // Iterate instead of recursing if possible.
+	      return;
+	    }
+
+	    sync = true;
+
+	    while (!isDone && currentTurn < turns && hasNext) {
+	      hasNext = false;
 	      work.call(this, currentTurn++, next, done);
-	    } else {
-	      done.apply(this, arguments);
+	    }
+
+	    sync = false;
+
+	    if (isDone) {
+	      // This means the loop finished synchronously.
+	      callback.apply(this, doneArgs);
+	      return;
+	    }
+
+	    if (currentTurn >= turns && hasNext) {
+	      isDone = true;
+	      callback();
 	    }
 	  }
 
@@ -21286,8 +21318,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 	var _warning = __webpack_require__(161);
 
 	var _warning2 = _interopRequireDefault(_warning);
@@ -21325,12 +21355,11 @@
 	function useQueries(createHistory) {
 	  return function () {
 	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	    var history = createHistory(options);
+
 	    var stringifyQuery = options.stringifyQuery;
 	    var parseQueryString = options.parseQueryString;
-
-	    var historyOptions = _objectWithoutProperties(options, ['stringifyQuery', 'parseQueryString']);
-
-	    var history = createHistory(historyOptions);
 
 	    if (typeof stringifyQuery !== 'function') stringifyQuery = defaultStringifyQuery;
 
@@ -21519,7 +21548,7 @@
 			}
 
 			if (Array.isArray(val)) {
-				return val.sort().map(function (val2) {
+				return val.slice().sort().map(function (val2) {
 					return strictUriEncode(key) + '=' + strictUriEncode(val2);
 				}).join('&');
 			}
@@ -21641,7 +21670,9 @@
 	    _TransitionUtils.runLeaveHooks(leaveRoutes);
 
 	    // Tear down confirmation hooks for left routes
-	    leaveRoutes.forEach(removeListenBeforeHooksForRoute);
+	    leaveRoutes.filter(function (route) {
+	      return enterRoutes.indexOf(route) === -1;
+	    }).forEach(removeListenBeforeHooksForRoute);
 
 	    _TransitionUtils.runEnterHooks(enterRoutes, nextState, function (error, redirectInfo) {
 	      if (error) {
@@ -21910,16 +21941,25 @@
 	  var leaveRoutes = undefined,
 	      enterRoutes = undefined;
 	  if (prevRoutes) {
-	    leaveRoutes = prevRoutes.filter(function (route) {
-	      return nextRoutes.indexOf(route) === -1 || routeParamsChanged(route, prevState, nextState);
-	    });
+	    (function () {
+	      var parentIsLeaving = false;
+	      leaveRoutes = prevRoutes.filter(function (route) {
+	        if (parentIsLeaving) {
+	          return true;
+	        } else {
+	          var isLeaving = nextRoutes.indexOf(route) === -1 || routeParamsChanged(route, prevState, nextState);
+	          if (isLeaving) parentIsLeaving = true;
+	          return isLeaving;
+	        }
+	      });
 
-	    // onLeave hooks start at the leaf route.
-	    leaveRoutes.reverse();
+	      // onLeave hooks start at the leaf route.
+	      leaveRoutes.reverse();
 
-	    enterRoutes = nextRoutes.filter(function (route) {
-	      return prevRoutes.indexOf(route) === -1 || leaveRoutes.indexOf(route) !== -1;
-	    });
+	      enterRoutes = nextRoutes.filter(function (route) {
+	        return prevRoutes.indexOf(route) === -1 || leaveRoutes.indexOf(route) !== -1;
+	      });
+	    })();
 	  } else {
 	    leaveRoutes = [];
 	    enterRoutes = nextRoutes;
@@ -24116,8 +24156,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 	var _ExecutionEnvironment = __webpack_require__(165);
 
 	var _PathUtils = __webpack_require__(164);
@@ -24133,11 +24171,10 @@
 	function useBasename(createHistory) {
 	  return function () {
 	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	    var history = createHistory(options);
+
 	    var basename = options.basename;
-
-	    var historyOptions = _objectWithoutProperties(options, ['basename']);
-
-	    var history = createHistory(historyOptions);
 
 	    // Automatically use the value of <base href> in HTML
 	    // documents as basename if it's not explicitly given.
@@ -24338,19 +24375,20 @@
 
 	  function getCurrentLocation() {
 	    var entry = entries[current];
-	    var key = entry.key;
 	    var basename = entry.basename;
 	    var pathname = entry.pathname;
 	    var search = entry.search;
 
 	    var path = (basename || '') + pathname + (search || '');
 
-	    var state = undefined;
-	    if (key) {
+	    var key = undefined,
+	        state = undefined;
+	    if (entry.key) {
+	      key = entry.key;
 	      state = readState(key);
 	    } else {
-	      state = null;
 	      key = history.createKey();
+	      state = null;
 	      entry.key = key;
 	    }
 
@@ -24956,29 +24994,29 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _culture = __webpack_require__(218);
+	var _Culture = __webpack_require__(218);
 
-	var _culture2 = _interopRequireDefault(_culture);
+	var _Culture2 = _interopRequireDefault(_Culture);
 
-	var _civilRights = __webpack_require__(227);
+	var _CivilRights = __webpack_require__(227);
 
-	var _civilRights2 = _interopRequireDefault(_civilRights);
+	var _CivilRights2 = _interopRequireDefault(_CivilRights);
 
-	var _commerce = __webpack_require__(228);
+	var _Commerce = __webpack_require__(228);
 
-	var _commerce2 = _interopRequireDefault(_commerce);
+	var _Commerce2 = _interopRequireDefault(_Commerce);
 
-	var _environment = __webpack_require__(229);
+	var _Environment = __webpack_require__(229);
 
-	var _environment2 = _interopRequireDefault(_environment);
+	var _Environment2 = _interopRequireDefault(_Environment);
 
-	var _socialPolicy = __webpack_require__(230);
+	var _SocialPolicy = __webpack_require__(230);
 
-	var _socialPolicy2 = _interopRequireDefault(_socialPolicy);
+	var _SocialPolicy2 = _interopRequireDefault(_SocialPolicy);
 
-	var _technology = __webpack_require__(231);
+	var _Technology = __webpack_require__(231);
 
-	var _technology2 = _interopRequireDefault(_technology);
+	var _Technology2 = _interopRequireDefault(_Technology);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25038,98 +25076,116 @@
 	    });
 	  },
 	  render: function render() {
-	    if (this.state.subject == 'Culture') return _react2.default.createElement(_culture2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Civil Rights') return _react2.default.createElement(_civilRights2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Commerce') return _react2.default.createElement(_commerce2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Environment') return _react2.default.createElement(_environment2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Social Policy') return _react2.default.createElement(_socialPolicy2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else if (this.state.subject == 'Technology') return _react2.default.createElement(_technology2.default, { subject: this.state.subject, refreshPage: this.refreshPage });else {
-	      return _react2.default.createElement(
-	        'div',
-	        { subject: this.state.subject },
-	        _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
-	        _react2.default.createElement(
+	    var props = {
+	      subject: this.state.subject,
+	      refreshPage: this.refreshPage
+	    };
+
+	    switch (this.state.subject) {
+	      case 'Culture':
+	        return _react2.default.createElement(_Culture2.default, props);
+	      case 'Civil Rights':
+	        return _react2.default.createElement(_CivilRights2.default, props);
+	      case 'Commerce':
+	        return _react2.default.createElement(_Commerce2.default, props);
+	      case 'Environment':
+	        return _react2.default.createElement(_Environment2.default, props);
+	      case 'Social Policy':
+	        return _react2.default.createElement(_SocialPolicy2.default, props);
+	      case 'Technology':
+	        return _react2.default.createElement(_Technology2.default, props);
+	      default:
+	        return _react2.default.createElement(
 	          'div',
-	          { id: 'target', className: 'innerHeader' },
+	          { subject: this.state.subject },
+	          _react2.default.createElement('div', { style: { height: this.state.height }, className: 'googleMap', ref: 'googleMap' }),
 	          _react2.default.createElement(
 	            'div',
-	            { id: 'mobile-wrapper' },
+	            { id: 'target', className: 'innerHeader' },
 	            _react2.default.createElement(
-	              'h1',
-	              null,
-	              'Seattle Backstory'
+	              'div',
+	              { id: 'mobile-wrapper' },
+	              _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Seattle Backstory'
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                { id: 'subhead' },
+	                'All the History that is fit to Map'
+	              )
 	            ),
 	            _react2.default.createElement(
-	              'p',
-	              { id: 'subhead' },
-	              'All the History that is fit to Map'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'footer',
-	            { id: 'vanishLater' },
-	            _react2.default.createElement(
-	              'nav',
-	              { id: 'eventSearch' },
+	              'footer',
+	              { id: 'vanishLater' },
 	              _react2.default.createElement(
-	                'ul',
-	                { id: 'category' },
+	                'nav',
+	                { id: 'eventSearch' },
 	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.handleClick },
+	                  'ul',
+	                  { id: 'category' },
 	                  _react2.default.createElement(
-	                    'a',
-	                    null,
-	                    'Culture'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.handleClick },
+	                    'li',
+	                    { onClick: this.handleClick },
+	                    _react2.default.createElement(
+	                      'a',
+	                      null,
+	                      'Culture'
+	                    )
+	                  ),
 	                  _react2.default.createElement(
-	                    'a',
-	                    null,
-	                    'Civil Rights'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.handleClick },
+	                    'li',
+	                    { onClick: this.handleClick },
+	                    _react2.default.createElement(
+	                      'a',
+	                      null,
+	                      'Civil Rights'
+	                    )
+	                  ),
 	                  _react2.default.createElement(
-	                    'a',
-	                    null,
-	                    'Commerce'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.handleClick },
+	                    'li',
+	                    { onClick: this.handleClick },
+	                    _react2.default.createElement(
+	                      'a',
+	                      null,
+	                      'Commerce'
+	                    )
+	                  ),
 	                  _react2.default.createElement(
-	                    'a',
-	                    null,
-	                    'Environment'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.handleClick },
+	                    'li',
+	                    { onClick: this.handleClick },
+	                    _react2.default.createElement(
+	                      'a',
+	                      null,
+	                      'Environment'
+	                    )
+	                  ),
 	                  _react2.default.createElement(
-	                    'a',
-	                    null,
-	                    'Social Policy'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  { onClick: this.handleClick },
+	                    'li',
+	                    { onClick: this.handleClick },
+	                    _react2.default.createElement(
+	                      'a',
+	                      null,
+	                      'Social Policy'
+	                    )
+	                  ),
 	                  _react2.default.createElement(
-	                    'a',
-	                    null,
-	                    'Technology'
+	                    'li',
+	                    { onClick: this.handleClick },
+	                    _react2.default.createElement(
+	                      'a',
+	                      null,
+	                      'Technology'
+	                    )
 	                  )
 	                )
 	              )
 	            )
-	          )
-	        ),
-	        _react2.default.createElement('div', { className: 'title' }),
-	        _react2.default.createElement('div', { className: 'over_map' })
-	      );
+	          ),
+	          _react2.default.createElement('div', { className: 'title' }),
+	          _react2.default.createElement('div', { className: 'over_map' })
+	        );
 	    }
 	  }
 	});
@@ -25148,14 +25204,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _newMarker = __webpack_require__(219);
+	var _NewMarker = __webpack_require__(219);
 
-	var _newMarker2 = _interopRequireDefault(_newMarker);
+	var _NewMarker2 = _interopRequireDefault(_NewMarker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'culture',
+	  displayName: 'Culture',
 	  getInitialState: function getInitialState() {
 	    return {
 	      height: '790px',
@@ -25227,9 +25283,14 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker() {
+	  openAddForm: function openAddForm() {
 	    this.setState({
-	      showForm: !this.state.showForm
+	      showForm: true
+	    });
+	  },
+	  closeAddForm: function closeAddForm() {
+	    this.setState({
+	      showForm: false
 	    });
 	  },
 	  render: function render() {
@@ -25250,10 +25311,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { onClick: this.addMarker, className: 'new-marker' },
+	          { onClick: this.openAddForm, className: 'new-marker' },
 	          'ADD LOCATION'
 	        ),
 	        _react2.default.createElement(
@@ -25287,7 +25348,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'new-marker',
+	  displayName: 'NewMarker',
 	  handleSubmit: function handleSubmit(e) {
 	    var _this = this;
 
@@ -25343,26 +25404,26 @@
 	          _react2.default.createElement(
 	            'fieldset',
 	            { className: 'form-group' },
-	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'location', placeholder: 'Location' })
+	            _react2.default.createElement('input', { className: 'form-control input-square', type: 'text', name: 'location', placeholder: 'Location' })
 	          ),
 	          _react2.default.createElement(
 	            'fieldset',
 	            { className: 'form-group' },
-	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'description', placeholder: 'Description' })
+	            _react2.default.createElement('input', { className: 'form-control input-square', type: 'text', name: 'address', placeholder: 'Address (Optional)' })
 	          ),
 	          _react2.default.createElement(
 	            'fieldset',
 	            { className: 'form-group' },
-	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'address', placeholder: 'Address (Optional)' })
+	            _react2.default.createElement('input', { className: 'form-control input-square', type: 'text', name: 'image', placeholder: 'Image URL' })
 	          ),
 	          _react2.default.createElement(
 	            'fieldset',
 	            { className: 'form-group' },
-	            _react2.default.createElement('input', { className: 'form-control', type: 'text', name: 'image', placeholder: 'Image URL' })
+	            _react2.default.createElement('textarea', { className: 'form-control input-square', type: 'text', name: 'description', placeholder: 'Description' })
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'btn btn-primary', type: 'submit' },
+	            { className: 'btn btn-primary btn-square', type: 'submit' },
 	            'Submit'
 	          )
 	        )
@@ -26179,14 +26240,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _newMarker = __webpack_require__(219);
+	var _NewMarker = __webpack_require__(219);
 
-	var _newMarker2 = _interopRequireDefault(_newMarker);
+	var _NewMarker2 = _interopRequireDefault(_NewMarker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'civil-rights',
+	  displayName: 'CivilRights',
 	  getInitialState: function getInitialState() {
 	    return {
 	      height: '790px',
@@ -26254,13 +26315,14 @@
 	  componentWillUnmount: function componentWillUnmount() {
 	    window.removeEventListener("resize", this.getViewport);
 	  },
-	  handleClick: function handleClick(e) {
-	    e.preventDefault();
-	    this.props.refreshPage();
-	  },
-	  addMarker: function addMarker() {
+	  openAddForm: function openAddForm() {
 	    this.setState({
-	      showForm: !this.state.showForm
+	      showForm: true
+	    });
+	  },
+	  closeAddForm: function closeAddForm() {
+	    this.setState({
+	      showForm: false
 	    });
 	  },
 	  render: function render() {
@@ -26281,10 +26343,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { onClick: this.addMarker, className: 'new-marker' },
+	          { onClick: this.openAddForm, className: 'new-marker' },
 	          'ADD LOCATION'
 	        ),
 	        _react2.default.createElement(
@@ -26311,14 +26373,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _newMarker = __webpack_require__(219);
+	var _NewMarker = __webpack_require__(219);
 
-	var _newMarker2 = _interopRequireDefault(_newMarker);
+	var _NewMarker2 = _interopRequireDefault(_NewMarker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'commerce',
+	  displayName: 'Commerce',
 	  getInitialState: function getInitialState() {
 	    return {
 	      height: '790px',
@@ -26386,13 +26448,15 @@
 	  componentWillUnmount: function componentWillUnmount() {
 	    window.removeEventListener("resize", this.getViewport);
 	  },
-	  handleClick: function handleClick(e) {
-	    e.preventDefault();
-	    this.props.refreshPage();
-	  },
-	  addMarker: function addMarker() {
+	  openAddForm: function openAddForm() {
+	    debugger;
 	    this.setState({
-	      showForm: !this.state.showForm
+	      showForm: true
+	    });
+	  },
+	  closeAddForm: function closeAddForm() {
+	    this.setState({
+	      showForm: false
 	    });
 	  },
 	  render: function render() {
@@ -26413,10 +26477,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeddForm }) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { onClick: this.addMarker, className: 'new-marker' },
+	          { onClick: this.openAddForm, className: 'new-marker' },
 	          'ADD LOCATION'
 	        ),
 	        _react2.default.createElement(
@@ -26443,14 +26507,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _newMarker = __webpack_require__(219);
+	var _NewMarker = __webpack_require__(219);
 
-	var _newMarker2 = _interopRequireDefault(_newMarker);
+	var _NewMarker2 = _interopRequireDefault(_NewMarker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'environment',
+	  displayName: 'Environment',
 	  getInitialState: function getInitialState() {
 	    return {
 	      height: '790px',
@@ -26522,9 +26586,14 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker() {
+	  openAddForm: function openAddForm() {
 	    this.setState({
-	      showForm: !this.state.showForm
+	      showForm: true
+	    });
+	  },
+	  closeAddForm: function closeAddForm() {
+	    this.setState({
+	      showForm: false
 	    });
 	  },
 	  render: function render() {
@@ -26545,10 +26614,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { onClick: this.addMarker, className: 'new-marker' },
+	          { onClick: this.openAddForm, className: 'new-marker' },
 	          'ADD LOCATION'
 	        ),
 	        _react2.default.createElement(
@@ -26575,14 +26644,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _newMarker = __webpack_require__(219);
+	var _NewMarker = __webpack_require__(219);
 
-	var _newMarker2 = _interopRequireDefault(_newMarker);
+	var _NewMarker2 = _interopRequireDefault(_NewMarker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'social-policy',
+	  displayName: 'SocialPolicy',
 	  getInitialState: function getInitialState() {
 	    return {
 	      height: '790px',
@@ -26654,10 +26723,17 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker() {
+	  openAddForm: function openAddForm() {
+	    window.addEventListener('click', this.closeAddForm);
 	    this.setState({
-	      showForm: !this.state.showForm
+	      showForm: true
 	    });
+	  },
+	  closeAddForm: function closeAddForm() {
+	    this.setState({
+	      showForm: false
+	    });
+	    window.removeEventListener('click', this.closeAddForm);
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
@@ -26677,10 +26753,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { onClick: this.addMarker, className: 'new-marker' },
+	          { onClick: this.openAddForm, className: 'new-marker' },
 	          'ADD LOCATION'
 	        ),
 	        _react2.default.createElement(
@@ -26707,14 +26783,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _newMarker = __webpack_require__(219);
+	var _NewMarker = __webpack_require__(219);
 
-	var _newMarker2 = _interopRequireDefault(_newMarker);
+	var _NewMarker2 = _interopRequireDefault(_NewMarker);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'technology',
+	  displayName: 'Technology',
 	  getInitialState: function getInitialState() {
 	    return {
 	      height: '790px',
@@ -26785,9 +26861,14 @@
 	    e.preventDefault();
 	    this.props.refreshPage();
 	  },
-	  addMarker: function addMarker() {
+	  openAddForm: function openAddForm() {
 	    this.setState({
-	      showForm: !this.state.showForm
+	      showForm: true
+	    });
+	  },
+	  closeAddForm: function closeAddForm() {
+	    this.setState({
+	      showForm: false
 	    });
 	  },
 	  render: function render() {
@@ -26808,10 +26889,10 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_newMarker2.default, { subject: this.props.subject, closeForm: this.addMarker }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
 	        _react2.default.createElement(
 	          'div',
-	          { onClick: this.addMarker, className: 'new-marker' },
+	          { onClick: this.openAddForm, className: 'new-marker' },
 	          'ADD LOCATION'
 	        ),
 	        _react2.default.createElement(

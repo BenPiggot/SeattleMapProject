@@ -92,6 +92,7 @@ html, body {
   width: 50%;
   padding: 1rem;
   background-color: #fff;
+  font-family: 'Raleway', sans-serif;
 }
 
 .add-form-appear {
@@ -101,6 +102,10 @@ html, body {
 .add-form-appear.add-form-appear-active {
   opacity: 1;
   transition: opacity 0.5s ease-in;
+}
+
+.btn-square, .input-square {
+  border-radius: 0;
 }
 
 .title-category { 
