@@ -1,6 +1,6 @@
 'use strict';
 
-var geocoder = require('node-geocoder');
+var geocoder = require('geocoder')
 
 module.exports = function(sequelize, DataTypes) {
   var map = sequelize.define('map', {
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
           if (err) return fn(err, null);
           map.latitude = data.results[0].geometry.map.lat;
           map.longitude = data.results[0].geometry.map.lng;
-          fn(null, map;
+          fn(null, map);
         });
       }
     }

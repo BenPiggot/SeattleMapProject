@@ -97,7 +97,7 @@ export default React.createClass({
             <h1>Commercial History</h1>
           </div>
           <div className="title"></div>
-          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.closeddForm} /> : null }
+          { this.state.showForm ? <NewMarker subject={this.props.subject} closeForm={this.closeddForm} initialize={this.initialize}/> : null }
           <div onClick={this.openAddForm} className="new-marker">ADD LOCATION</div>
           <div onClick={this.handleClick} className="return">MAIN MENU</div>
         </div>

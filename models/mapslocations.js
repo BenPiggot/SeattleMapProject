@@ -1,6 +1,5 @@
-var geocoder = require('geocoder');
-
 'use strict';
+
 module.exports = function(sequelize, DataTypes) {
   var mapslocations = sequelize.define('mapslocations', {
     mapId: DataTypes.INTEGER,

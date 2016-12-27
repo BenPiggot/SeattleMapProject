@@ -6,42 +6,16 @@ export default React.createClass({
   handleSubmit(e) {
     e.preventDefault()
     const path = this.props.subject.toLowerCase().replace(' ', '-')
+    const data = $(this.refs.form).serializeArray()
+      .reduce((a, x) => { a[x.name] = x.value; return a; }, {});
 
     $.ajax({
       method: 'POST',
       url: `/new/${path}`, 
-      data: $(this.refs.form).serialize(), 
+      data: data,
       success: (data) => {
-        console.log(data)
-        this.props.closeForm()
-
-        $.get(`/data/${path}`, (data) => {
-          data.result.forEach( (r) => {
-            let marker = new google.maps.Marker({
-              position: {lat: r.latitude, lng: r.longitude},
-              map: map,
-              icon: './images/greypin.png'
-            });
-
-            google.maps.event.addListener(marker, 'click', () => {
-              let infowindow = new google.maps.InfoWindow({
-                content: r.description
-              });
-
-              if ($('.gm-style > div > div+div > div > div').length > 1)
-                $($('.gm-style > div > div+div > div > div')[0]).remove()
-
-              infowindow.open(map, marker);
-
-              const node = $('.gm-style > div > div+div > div > div')[0]
-
-              setTimeout( () => {
-                if (screen.width >= 600 && (this.getViewportOffset(node)) > 600) 
-                  map.panBy(0, -110);
-              }, 600);
-            })
-          })
-        })
+        this.props.closeForm();
+        this.props.initialize();
       }
     })
   },
@@ -58,7 +32,7 @@ export default React.createClass({
         </div>
         <form ref='form'>
           <fieldset className='form-group'>
-            <input className='form-control input-square' type='text' name='location' placeholder='Location' />
+            <input className='form-control input-square' type='text' name='location' placeholder='Location Name' />
           </fieldset>
           <fieldset className='form-group'>
             <input className='form-control input-square' type='text' name='address' placeholder='Address (Optional)' />

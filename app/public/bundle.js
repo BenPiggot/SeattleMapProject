@@ -7965,6 +7965,10 @@
 	  }
 	};
 
+	function registerNullComponentID() {
+	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+	}
+
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -7973,7 +7977,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function (element) {},
 	  mountComponent: function (rootID, transaction, context) {
-	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -18696,7 +18700,7 @@
 
 	'use strict';
 
-	module.exports = '0.14.7';
+	module.exports = '0.14.8';
 
 /***/ },
 /* 147 */
@@ -25311,7 +25315,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm, initialize: this.initialize }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.openAddForm, className: 'new-marker' },
@@ -25354,40 +25358,17 @@
 
 	    e.preventDefault();
 	    var path = this.props.subject.toLowerCase().replace(' ', '-');
+	    var data = $(this.refs.form).serializeArray().reduce(function (a, x) {
+	      a[x.name] = x.value;return a;
+	    }, {});
 
 	    $.ajax({
 	      method: 'POST',
 	      url: '/new/' + path,
-	      data: $(this.refs.form).serialize(),
+	      data: data,
 	      success: function success(data) {
-	        console.log(data);
 	        _this.props.closeForm();
-
-	        $.get('/data/' + path, function (data) {
-	          data.result.forEach(function (r) {
-	            var marker = new google.maps.Marker({
-	              position: { lat: r.latitude, lng: r.longitude },
-	              map: map,
-	              icon: './images/greypin.png'
-	            });
-
-	            google.maps.event.addListener(marker, 'click', function () {
-	              var infowindow = new google.maps.InfoWindow({
-	                content: r.description
-	              });
-
-	              if ($('.gm-style > div > div+div > div > div').length > 1) $($('.gm-style > div > div+div > div > div')[0]).remove();
-
-	              infowindow.open(map, marker);
-
-	              var node = $('.gm-style > div > div+div > div > div')[0];
-
-	              setTimeout(function () {
-	                if (screen.width >= 600 && _this.getViewportOffset(node) > 600) map.panBy(0, -110);
-	              }, 600);
-	            });
-	          });
-	        });
+	        _this.props.initialize();
 	      }
 	    });
 	  },
@@ -25416,7 +25397,7 @@
 	          _react2.default.createElement(
 	            'fieldset',
 	            { className: 'form-group' },
-	            _react2.default.createElement('input', { className: 'form-control input-square', type: 'text', name: 'location', placeholder: 'Location' })
+	            _react2.default.createElement('input', { className: 'form-control input-square', type: 'text', name: 'location', placeholder: 'Location Name' })
 	          ),
 	          _react2.default.createElement(
 	            'fieldset',
@@ -26355,7 +26336,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm, initialize: this.initialize }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.openAddForm, className: 'new-marker' },
@@ -26489,7 +26470,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeddForm }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeddForm, initialize: this.initialize }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.openAddForm, className: 'new-marker' },
@@ -26626,7 +26607,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm, initialize: this.initialize }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.openAddForm, className: 'new-marker' },
@@ -26763,7 +26744,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm, initialize: this.initialize }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.openAddForm, className: 'new-marker' },
@@ -26899,7 +26880,7 @@
 	          )
 	        ),
 	        _react2.default.createElement('div', { className: 'title' }),
-	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm }) : null,
+	        this.state.showForm ? _react2.default.createElement(_NewMarker2.default, { subject: this.props.subject, closeForm: this.closeAddForm, initialize: this.initialize }) : null,
 	        _react2.default.createElement(
 	          'div',
 	          { onClick: this.openAddForm, className: 'new-marker' },

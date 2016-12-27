@@ -1,11 +1,12 @@
 'use strict';
 
-var geocoder = require('node-geocoder');
+var geocoder = require('geocoder')
 
 module.exports = function(sequelize, DataTypes) {
   var location = sequelize.define('location', {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
+    address: DataTypes.TEXT,
     asset: DataTypes.STRING,
     latitude: DataTypes.FLOAT,
     longitude: DataTypes.FLOAT
@@ -18,7 +19,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     hooks: {
       beforeCreate: function(location, options, fn) {
-        geocoder.geocode(location, function(err, data) {
+        console.log(location)
+        var locator = location.address !== '' ? location.address : location.name;
+        geocoder.geocode(locator, function(err, data) {
+          console.log(data)
           if (err) return fn(err, null);
           location.latitude = data.results[0].geometry.location.lat;
           location.longitude = data.results[0].geometry.location.lng;

@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import hbs from 'express-handlebars';
 import React from 'react';
+// import ReactDOMServer from 'react-dom/server';
 import { Router } from 'react-router';
 import Root from './components/Root';
 import routes from './shared/routes';
@@ -16,6 +17,8 @@ app.engine('html', hbs({ extname: 'html' }));
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + "/public"));
 
 
@@ -103,33 +106,81 @@ app.get('/data/technology', (req, res) => {
 
 // POST routes
 app.post('/new/environment', (req, res) => {
-  console.log('success', req.body)
-  res.send(true)
+  db.map.find({ where: {topic: 'Environment'}}).then((map) => {
+    map.createLocation({
+      name: req.body.location,
+      asset: req.body.image,
+      address: req.body.address,
+      description: req.body.description
+    }).then((location) => {
+      res.send({result: map})
+    });
+  })
 })
 
 app.post('/new/social-policy', (req, res) => {
-  console.log('success', req.body)
-  res.send(true)
+  db.map.find({ where: {topic: 'Social Policy'}}).then((map) => {
+    map.createLocation({
+      name: req.body.location,
+      asset: req.body.image,
+      address: req.body.address,
+      description: req.body.description
+    }).then((location) => {
+      res.send({result: map})
+    });
+  })
 })
 
 app.post('/new/technology', (req, res) => {
-  console.log('success', req.body)
-  res.send(true)
+  db.map.find({ where: {topic: 'Technology'}}).then((map) => {
+    map.createLocation({
+      name: req.body.location,
+      asset: req.body.image,
+      address: req.body.address,
+      description: req.body.description
+    }).then((location) => {
+      res.send({result: map})
+    });
+  })
 })
 
 app.post('/new/culture', (req, res) => {
-  console.log('success', req.body)
-  res.send(true)
+  db.map.find({ where: {topic: 'Culture'}}).then((map) => {
+    map.createLocation({
+      name: req.body.location,
+      asset: req.body.image,
+      address: req.body.address,
+      description: req.body.description
+    }).then((location) => {
+      res.send({result: map})
+    });
+  })
 })
 
 app.post('/new/civil-rights', (req, res) => {
-  console.log('success', req.body)
-  res.send(true)
+  db.map.find({ where: {topic: 'Civil Rights'}}).then((map) => {
+    map.createLocation({
+      name: req.body.location,
+      asset: req.body.image,
+      address: req.body.address,
+      description: req.body.description
+    }).then((location) => {
+      res.send({result: map})
+    });
+  })
 })
 
 app.post('/new/commerce', (req, res) => {
-  console.log('success', req.body)
-  res.send(true)
+  db.map.find({ where: {topic: 'Commerce'}}).then((map) => {
+    map.createLocation({
+      name: req.body.location,
+      asset: req.body.image,
+      address: req.body.address,
+      description: req.body.description
+    }).then((location) => {
+      res.send({result: map})
+    });
+  })
 })
 
 
