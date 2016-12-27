@@ -1,6 +1,7 @@
-var geocoder = require('geocoder');
-
 'use strict';
+
+var geocoder = require('node-geocoder');
+
 module.exports = function(sequelize, DataTypes) {
   var location = sequelize.define('location', {
     name: DataTypes.STRING,
@@ -14,17 +15,17 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         models.location.belongsToMany(models.map, { through: models.mapslocations })
       }
+    },
+    hooks: {
+      beforeCreate: function(location, options, fn) {
+        geocoder.geocode(location, function(err, data) {
+          if (err) return fn(err, null);
+          location.latitude = data.results[0].geometry.location.lat;
+          location.longitude = data.results[0].geometry.location.lng;
+          fn(null, location);
+        });
+      }
     }
-    // hooks: {
-    //   beforeCreate: function(location, options, fn) {
-    //     geocoder.geocode(location, function(err, data) {
-    //       if (err) return fn(err, null);
-    //       location.latitude = data.results[0].geometry.location.lat;
-    //       location.longitude = data.results[0].geometry.location.lng;
-    //       fn(null, location);
-    //     });
-    //   }
-    // }
   });
   return location;
 };
